@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Community Builder — Skill-Architektur verstehen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--color-bg:#fff;--color-bg-warm:#F3EFEB;--color-bg-code:#000066;
+--color-text:#1A1A2E;--color-text-secondary:#5C5A6B;--color-text-muted:#9995A0;
+--color-border:#E4DAD4;--color-border-light:#EDE8E4;
+--color-surface:#fff;--color-surface-warm:#F8F5F2;
+--color-accent:#FE8F11;--color-accent-hover:#E57D00;
+--color-accent-light:#FFF3E5;--color-accent-muted:#FEB85C;
+--color-deep-blue:#000099;
+--color-success:#84C041;--color-success-light:#EFF7E5;
+--color-error:#CC0000;--color-error-light:#FFE5E5;
+--color-info:#1195EB;--color-info-light:#E5F2FC;
+--color-warning:#FDC83A;--color-warning-light:#FFF9E5;
+--color-actor-1:#000099;--color-actor-2:#FE8F11;--color-actor-3:#84C041;
+--color-actor-4:#1195EB;--color-actor-5:#5BE3D6;--color-actor-6:#FDC83A;
+--font-display:'Bricolage Grotesque',Georgia,serif;
+--font-body:'DM Sans',-apple-system,sans-serif;
+--font-mono:'JetBrains Mono','Fira Code',monospace;
+--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;
+--text-xl:1.25rem;--text-2xl:1.5rem;--text-3xl:1.875rem;--text-4xl:2.25rem;--text-5xl:3rem;--text-6xl:3.75rem;
+--leading-tight:1.15;--leading-snug:1.3;--leading-normal:1.6;
+--space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;
+--content-width:820px;--nav-height:50px;
+--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-full:9999px;
+--shadow-sm:0 1px 2px rgba(0,0,60,.05);--shadow-md:0 4px 12px rgba(0,0,60,.08);--shadow-lg:0 8px 24px rgba(0,0,60,.1);
+--ease-out:cubic-bezier(.16,1,.3,1);--duration-fast:150ms;--duration-normal:300ms;--duration-slow:500ms;--stagger-delay:120ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);background-image:radial-gradient(ellipse at 20% 50%,rgba(0,0,153,.02) 0%,transparent 50%);line-height:var(--leading-normal);font-size:var(--text-base)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--color-border);border-radius:var(--radius-full)}
+pre,code{white-space:pre-wrap;word-break:break-word;overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,153,.94);backdrop-filter:blur(12px);border-bottom:2px solid var(--color-accent)}
+.progress-bar{position:absolute;top:0;left:0;height:3px;background:var(--color-accent);width:0%;transition:width .1s}
+.nav-inner{max-width:1000px;margin:0 auto;padding:var(--space-3) var(--space-6);display:flex;align-items:center;justify-content:space-between}
+.nav-title{font-family:var(--font-display);font-weight:700;font-size:var(--text-sm);color:#fff}
+.nav-dots{display:flex;gap:var(--space-2)}
+.nav-dot{width:10px;height:10px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:transparent;cursor:pointer;transition:all var(--duration-fast);padding:0}
+.nav-dot.active{border-color:var(--color-accent);background:var(--color-accent);box-shadow:0 0 8px rgba(254,143,17,.4)}
+.nav-dot.visited{border-color:var(--color-accent);background:var(--color-accent)}
+.nav-right{display:flex;align-items:center;gap:var(--space-3)}.nav-links{display:flex;gap:var(--space-3);align-items:center}.nav-link{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-4);border-radius:var(--radius-full);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:var(--text-xs);font-family:var(--font-body);font-weight:500;text-decoration:none;transition:all var(--duration-fast)}.nav-link:hover{border-color:var(--color-accent);background:rgba(254,143,17,.15);color:var(--color-accent)}.nav-link-icon{display:flex;align-items:center}.nav-lang{font-size:1.3rem;text-decoration:none;transition:transform var(--duration-fast);display:flex;align-items:center}.nav-lang:hover{transform:scale(1.2)}.nav-flag{margin-right:var(--space-2)}
+.audience-links{display:flex;gap:var(--space-3);margin-top:var(--space-4);flex-wrap:wrap}.audience-link{padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);border:2px solid rgba(255,255,255,.3);font-size:var(--text-sm);font-family:var(--font-body);font-weight:500;text-decoration:none;color:rgba(255,255,255,.7);transition:all var(--duration-fast)}.audience-link:hover{border-color:var(--color-accent);color:var(--color-accent)}.audience-link.current{border-color:var(--color-accent);background:var(--color-accent);color:white}
+.site-footer{background:var(--color-deep-blue);color:rgba(255,255,255,.6);padding:var(--space-6);font-size:var(--text-xs)}.footer-inner{max-width:var(--content-width);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4)}.footer-links{display:flex;gap:var(--space-6)}.footer-links a{color:rgba(255,255,255,.5);text-decoration:none;transition:color var(--duration-fast)}.footer-links a:hover{color:var(--color-accent)}
+.module{min-height:100dvh;scroll-snap-align:start;padding:var(--space-16) var(--space-6);padding-top:calc(var(--nav-height) + var(--space-12))}
+.module-content{max-width:var(--content-width);margin:0 auto}
+.module-header{margin-bottom:var(--space-12)}
+.module-number{font-family:var(--font-display);font-size:var(--text-6xl);font-weight:800;color:var(--color-deep-blue);opacity:.12;display:block;line-height:var(--leading-tight)}
+.module-title{font-family:var(--font-display);font-size:var(--text-4xl);font-weight:700;line-height:var(--leading-tight);margin-top:var(--space-2)}
+.module-subtitle{color:var(--color-text-secondary);font-size:var(--text-lg);margin-top:var(--space-3)}
+.screen{margin-bottom:var(--space-16)}
+.screen-heading{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:600;margin-bottom:var(--space-6);line-height:var(--leading-snug)}
+.screen p{max-width:65ch;margin-bottom:var(--space-4)}
+.animate-in{opacity:0;transform:translateY(20px);transition:opacity var(--duration-slow) var(--ease-out),transform var(--duration-slow) var(--ease-out)}
+.animate-in.visible{opacity:1;transform:translateY(0)}
+.stagger-children>.animate-in{transition-delay:calc(var(--stagger-index,0)*var(--stagger-delay))}
+/* TRANSLATION BLOCKS */
+.translation-block{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md);margin:var(--space-8) 0}
+.translation-code{background:var(--color-bg-code);color:#D0D0E8;padding:var(--space-6);font-family:var(--font-mono);font-size:var(--text-sm);line-height:1.7;position:relative;overflow-x:hidden}
+.translation-code pre,.translation-code code{white-space:pre-wrap;word-break:break-word;overflow-x:hidden;margin:0;background:none}
+.translation-english{background:var(--color-surface-warm);padding:var(--space-6);font-size:var(--text-sm);line-height:1.7;border-left:3px solid var(--color-accent)}
+.translation-label{position:absolute;top:var(--space-2);right:var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;opacity:.5;font-family:var(--font-mono)}
+.translation-english .translation-label{position:relative;top:auto;right:auto;color:var(--color-text-muted);display:block;margin-bottom:var(--space-3)}
+.tl{margin-bottom:var(--space-3);padding-left:var(--space-3);border-left:2px solid var(--color-border-light)}
+.ck{color:#FEB85C}.cs{color:#84C041}.cf{color:#5BE3D6}.cc{color:#7B7BA0}.cn{color:#FDC83A}.cp{color:#E2C39A}.co{color:#1195EB}.ct{color:#FE8F11}
+.pattern-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-4);margin:var(--space-8) 0}
+.pattern-card{background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-6);box-shadow:var(--shadow-sm);transition:transform var(--duration-normal) var(--ease-out),box-shadow var(--duration-normal)}
+.pattern-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.pattern-icon{width:44px;height:44px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:var(--space-3);color:white}
+.pattern-title{font-family:var(--font-display);font-weight:600;margin-bottom:var(--space-2)}
+.pattern-desc{color:var(--color-text-secondary);font-size:var(--text-sm)}
+.callout{display:flex;gap:var(--space-4);padding:var(--space-5) var(--space-6);border-radius:var(--radius-md);margin:var(--space-6) 0}
+.callout-accent{background:var(--color-accent-light);border-left:4px solid var(--color-accent)}
+.callout-info{background:var(--color-info-light);border-left:4px solid var(--color-info)}
+.callout-warn{background:var(--color-warning-light);border-left:4px solid var(--color-warning)}
+.callout-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.callout-title{font-family:var(--font-display);font-weight:600;display:block;margin-bottom:var(--space-1)}
+.callout-content p{font-size:var(--text-sm);margin:0}
+.step-cards{display:flex;flex-direction:column;gap:var(--space-3);margin:var(--space-6) 0}
+.step-card{display:flex;align-items:flex-start;gap:var(--space-4);padding:var(--space-4) var(--space-5);background:var(--color-surface);border-radius:var(--radius-md);border-left:3px solid var(--color-accent);box-shadow:var(--shadow-sm)}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--color-accent);color:white;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);flex-shrink:0;font-size:var(--text-sm)}
+.step-body strong{font-family:var(--font-display);font-weight:600}
+.step-body p{margin:var(--space-1) 0 0;color:var(--color-text-secondary);font-size:var(--text-sm)}
+.flow-steps{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;justify-content:center;margin:var(--space-8) 0}
+.flow-step{background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);box-shadow:var(--shadow-sm);text-align:center;min-width:90px}
+.flow-step p{font-size:var(--text-sm);margin:0}
+.flow-arrow{font-size:1.1rem;color:var(--color-accent);font-weight:700;flex-shrink:0}
+.icon-rows{display:flex;flex-direction:column;gap:var(--space-4);margin:var(--space-6) 0}
+.icon-row{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md);box-shadow:var(--shadow-sm)}
+.icon-row p{margin:0;color:var(--color-text-secondary);font-size:var(--text-sm)}
+.icon-circle{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;color:white}
+.badge-list{display:flex;flex-direction:column;gap:var(--space-2);margin:var(--space-6) 0}
+.badge-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-3) var(--space-4);border:1px solid var(--color-border-light);border-radius:var(--radius-sm);font-size:var(--text-sm)}
+.badge-code{font-family:var(--font-mono);font-size:var(--text-sm);background:var(--color-bg-code);color:#FEB85C;padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);white-space:nowrap}
+.chat-window{background:var(--color-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden;margin:var(--space-8) 0;max-width:600px}
+.chat-header{background:var(--color-bg-code);color:#D0D0E8;padding:var(--space-3) var(--space-5);font-family:var(--font-display);font-weight:600;font-size:var(--text-sm)}
+.chat-messages{padding:var(--space-4) var(--space-5);min-height:180px;max-height:420px;overflow-y:auto}
+.chat-message{display:flex;gap:var(--space-3);margin-bottom:var(--space-4);align-items:flex-start}
+.chat-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--text-xs);color:white;flex-shrink:0;font-family:var(--font-mono)}
+.chat-bubble{background:var(--color-bg-warm);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);max-width:80%}
+.chat-sender{font-weight:600;font-size:var(--text-xs);display:block;margin-bottom:var(--space-1)}
+.chat-bubble p{font-size:var(--text-sm);margin:0}
+.chat-controls{display:flex;gap:var(--space-3);padding:var(--space-3) var(--space-5);border-top:1px solid var(--color-border-light);flex-wrap:wrap}
+.chat-controls button{padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);cursor:pointer;font-size:var(--text-xs);font-family:var(--font-body);transition:all var(--duration-fast)}
+.chat-controls button:hover{border-color:var(--color-accent);color:var(--color-accent)}
+.chat-typing{display:flex;gap:var(--space-3);align-items:center;padding:0 var(--space-5);margin-bottom:var(--space-3)}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--color-text-muted);animation:tb 1.4s infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+@keyframes fsu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.quiz-container{margin:var(--space-8) 0}
+.quiz-question-block{margin-bottom:var(--space-8);background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.quiz-question{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)}
+.quiz-scenario{background:var(--color-bg-warm);padding:var(--space-4) var(--space-5);border-radius:var(--radius-sm);margin-bottom:var(--space-5);font-size:var(--text-sm);border-left:3px solid var(--color-info)}
+.quiz-scenario-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-info);margin-bottom:var(--space-2);display:block}
+.quiz-options{display:flex;flex-direction:column;gap:var(--space-3)}
+.quiz-option{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);border:2px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);cursor:pointer;width:100%;text-align:left;font-family:var(--font-body);font-size:var(--text-sm);transition:border-color var(--duration-fast),background var(--duration-fast)}
+.quiz-option:hover{border-color:var(--color-accent-muted)}
+.quiz-option.selected{border-color:var(--color-accent);background:var(--color-accent-light)}
+.quiz-option.correct{border-color:var(--color-success);background:var(--color-success-light)}
+.quiz-option.incorrect{border-color:var(--color-error);background:var(--color-error-light)}
+.quiz-option-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--color-border);flex-shrink:0;transition:all var(--duration-fast)}
+.quiz-option.selected .quiz-option-radio{border-color:var(--color-accent);background:var(--color-accent);box-shadow:inset 0 0 0 3px white}
+.quiz-option.correct .quiz-option-radio{border-color:var(--color-success);background:var(--color-success);box-shadow:inset 0 0 0 3px white}
+.quiz-feedback{max-height:0;overflow:hidden;opacity:0;transition:max-height var(--duration-normal),opacity var(--duration-normal);font-size:var(--text-sm);border-radius:var(--radius-sm)}
+.quiz-feedback.show{max-height:250px;opacity:1;padding:var(--space-3) var(--space-4);margin-top:var(--space-3)}
+.quiz-feedback.success{background:var(--color-success-light);color:#2d6e30}
+.quiz-feedback.error{background:var(--color-error-light);color:#991a1a}
+.quiz-check-btn{padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);border:none;background:var(--color-accent);color:white;font-weight:600;cursor:pointer;font-family:var(--font-body);font-size:var(--text-sm);transition:background var(--duration-fast);margin-top:var(--space-4)}
+.quiz-check-btn:hover{background:var(--color-accent-hover)}
+.term{border-bottom:1.5px dashed var(--color-accent-muted);cursor:pointer}
+.term:hover,.term.active{border-bottom-color:var(--color-accent);color:var(--color-accent)}
+.term-tooltip{position:fixed;background:var(--color-bg-code);color:#D0D0E8;padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm);font-size:var(--text-sm);font-family:var(--font-body);line-height:var(--leading-normal);width:max(200px,min(320px,80vw));box-shadow:var(--shadow-lg);pointer-events:none;opacity:0;transition:opacity var(--duration-fast);z-index:10000}
+.term-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--color-bg-code)}
+.term-tooltip.visible{opacity:1}
+.term-tooltip.flip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--color-bg-code)}
+@media(max-width:768px){:root{--text-4xl:1.875rem;--text-5xl:2.25rem;--text-6xl:3rem.nav-links{gap:var(--space-2)}.nav-link-text{display:none}}.translation-block{grid-template-columns:1fr}.translation-english{border-left:none;border-top:3px solid var(--color-accent)}.flow-steps{flex-direction:column}.flow-arrow{transform:rotate(90deg)}}
+@media(max-width:480px){:root{--text-4xl:1.5rem;--text-5xl:1.875rem;--text-6xl:2.25rem.nav-link-text{display:none}.nav-links{gap:var(--space-1)}.nav-link{padding:var(--space-1) var(--space-2)}.footer-inner{flex-direction:column;text-align:center}}.module{padding:var(--space-8) var(--space-4)}.nav-title{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="progress-bar" role="progressbar"></div><div class="nav-inner"><span class="nav-title"><span class="nav-flag">🇩🇪</span> LinkedIn · Skill-Architektur</span><div class="nav-dots">
+<button class="nav-dot" data-target="m0"></button><button class="nav-dot" data-target="m1"></button><button class="nav-dot" data-target="m2"></button><button class="nav-dot" data-target="m3"></button><button class="nav-dot" data-target="m4"></button><button class="nav-dot" data-target="m5"></button><button class="nav-dot" data-target="m6"></button>
+</div><div class="nav-right"><div class="nav-links"><a href="https://github.com/GodModeAI2025/LinkedIn-Orchestrator" class="nav-link" target="_blank" rel="noopener"><span class="nav-link-icon"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span> <span class="nav-link-text">GitHub</span></a></div><a href="index_dev_en.html" class="nav-lang" title="English version">🇬🇧</a></div></div></nav>
+
+<!-- ===== HERO ===== -->
+<section class="module" id="m0" style="background:var(--color-deep-blue);display:flex;align-items:center;color:#fff">
+<div class="module-content" style="text-align:center"><div class="animate-in">
+<div style="font-size:4rem;margin-bottom:var(--space-6)">🔧</div>
+<h1 style="font-family:var(--font-display);font-size:var(--text-5xl);font-weight:800;line-height:var(--leading-tight);color:#fff;margin-bottom:var(--space-4)">Unter der Haube des<br>LinkedIn Community Builders</h1>
+<p style="font-size:var(--text-xl);color:rgba(255,255,255,.7);max-width:600px;margin:0 auto var(--space-8)">Wie der Skill aufgebaut ist, warum er so funktioniert — und wo du ansetzen musst wenn du ihn ändern willst.</p>
+<div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap">
+<span style="background:rgba(254,143,17,.2);color:#FE8F11;padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);font-size:var(--text-sm)">7-Phasen-Orchestrator</span>
+<span style="background:rgba(132,192,65,.2);color:#84C041;padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);font-size:var(--text-sm)">Verifikations-Engine</span>
+<span style="background:rgba(17,149,235,.2);color:#1195EB;padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);font-size:var(--text-sm)">Für Skill-Autoren</span>
+</div>
+<div class="audience-links" style="justify-content:center;margin-top:var(--space-6)">
+<span class="audience-link current">🔧 Entwickler-Guide</span>
+<a href="index_de.html" class="audience-link">👤 Anwender-Guide</a>
+</div>
+<p style="margin-top:var(--space-10);color:rgba(255,255,255,.4);font-size:var(--text-sm)">↓ Scrolle oder drücke die Pfeiltasten</p>
+</div></div>
+</section>
+
+<!-- ===== M1: DIE ARCHITEKTUR ===== -->
+<section class="module" id="m1" style="background:var(--color-bg-warm)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">01</span>
+<h1 class="module-title">Die Architektur des Skills</h1>
+<p class="module-subtitle">Eine einzelne SKILL.md mit 7 zustandsgesteuerten Phasen und einer Verifikationsschicht</p></header>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Anatomie auf einen Blick</h2>
+<p>Der gesamte Skill lebt in einer einzigen <span class="term" data-definition="SKILL.md ist die Kerndatei eines Claude-Skills. Sie enthält YAML-Frontmatter (Name + Description für die Triggerung) und Markdown-Instruktionen. Claude liest diese Datei wenn der Skill aktiviert wird und folgt den Anweisungen darin.">SKILL.md</span> — keine externen Referenzdateien, keine Scripts. Die Intelligenz steckt in der Struktur: 4 klar getrennte Schichten.</p>
+
+<div class="icon-rows stagger-children">
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-deep-blue)">🧠</div><div><strong>Schicht 1: Philosophie & Algorithmus-Wissen</strong><p>Unveränderliche Grundprinzipien + aktuelle Algorithmus-Daten. Die "Weltsicht" des Skills.</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-accent)">🎛️</div><div><strong>Schicht 2: Orchestrator-Modus</strong><p>Zustandsmaschine mit 7 Phasen + Einstiegspunkt-Routing. Bestimmt WO der Skill startet.</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-actor-3)">📐</div><div><strong>Schicht 3: Phasen-Definitionen (×7)</strong><p>Jede Phase hat: Ziel, Leitprinzip, Taktiken, konkrete Ausgabe-Formate.</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-info)">✅</div><div><strong>Schicht 4: Verifikation + Gesprächsstil</strong><p>6-Punkt-Prüfung die JEDEN Output durchläuft. Plus Tonalitäts-Regeln.</p></div></div>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Was das YAML-Frontmatter tut</h2>
+<p>Das <span class="term" data-definition="Frontmatter ist der Kopfbereich einer SKILL.md zwischen zwei --- Zeilen. Es enthält 'name' und 'description'. Claude nutzt NUR die description um zu entscheiden, ob dieser Skill für eine Anfrage aktiviert wird — der restliche Skill-Inhalt wird erst danach geladen.">Frontmatter</span> ist die Triggerung des Skills — der einzige Teil den Claude IMMER sieht. Die Description muss aggressiv genug sein, damit der Skill auch bei indirekten Anfragen greift:</p>
+
+<div class="translation-block">
+<div class="translation-code"><span class="translation-label">FRONTMATTER</span>
+<pre><code><span class="cc">---</span>
+<span class="cp">name</span>: <span class="cs">linkedin-community-builder</span>
+<span class="cp">description</span>: <span class="cs">"Strategischer LinkedIn-
+  Orchestrator für Reichweite,
+  Community und Thought Leadership
+  in 7 Phasen..."</span>
+<span class="cc">---</span></code></pre>
+</div>
+<div class="translation-english"><span class="translation-label">DESIGN-ENTSCHEIDUNG</span><div class="translation-lines">
+<p class="tl"><strong>name:</strong> Maschinenlesbarer Identifier. Wird in der Skill-Liste angezeigt. Lowercase, Bindestriche.</p>
+<p class="tl"><strong>description:</strong> DAS ist die Trigger-Logik. Claude liest nur diesen Text um zu entscheiden ob der Skill geladen wird. Deshalb steht hier alles drin: Die 7 Phasen, Synonyme ("wie werde ich sichtbar"), konkrete Szenarien ("mein LinkedIn wächst nicht").</p>
+<p class="tl"><strong>Warum so lang?</strong> Claude tendiert zum "Unter-Triggern" — lieber zu viele Trigger-Begriffe als zu wenige. Jeder Satz in der Description erhöht die Chance dass der Skill bei einer passenden Anfrage aktiviert wird.</p>
+</div></div>
+</div>
+</section>
+</div>
+</section>
+
+<!-- ===== M2: DER ORCHESTRATOR ===== -->
+<section class="module" id="m2" style="background:var(--color-bg)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">02</span>
+<h1 class="module-title">Der Orchestrator — Die Zustandsmaschine</h1>
+<p class="module-subtitle">Wie der Skill entscheidet wo er einsteigt und wie er weiterführt</p></header>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">7 Phasen als State Machine</h2>
+<p>Der Skill ist kein linearer Ablauf — er ist eine <span class="term" data-definition="Eine Zustandsmaschine (State Machine) ist ein Modell bei dem ein System sich in einem definierten Zustand befindet und über Trigger-Events in einen anderen Zustand wechselt. Wie ein Automat: Er ist in 'Bereit', und je nach Eingabe wechselt er zu 'Verarbeiten' oder 'Fehler'.">Zustandsmaschine</span>. Der User kann bei jeder Phase einsteigen — der Skill routet automatisch basierend auf Schlüsselwörtern.</p>
+
+<div class="flow-steps stagger-children">
+<div class="flow-step animate-in" style="border:2px solid var(--color-deep-blue)"><p><strong>P1</strong></p><p style="font-size:var(--text-xs)">Positionierung</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="border:2px solid var(--color-accent)"><p><strong>P2</strong></p><p style="font-size:var(--text-xs)">Profil</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="border:2px solid var(--color-actor-3)"><p><strong>P3</strong></p><p style="font-size:var(--text-xs)">Content</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="border:2px solid var(--color-info)"><p><strong>P4</strong></p><p style="font-size:var(--text-xs)">Engagement</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="border:2px solid var(--color-actor-5)"><p><strong>P5</strong></p><p style="font-size:var(--text-xs)">Community</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="border:2px solid var(--color-actor-6)"><p><strong>P6</strong></p><p style="font-size:var(--text-xs)">Analytics</p></div>
+<div class="flow-arrow animate-in">→</div>
+<div class="flow-step animate-in" style="background:var(--color-success-light);border:2px solid var(--color-success)"><p><strong>P7</strong></p><p style="font-size:var(--text-xs)">Monetarisierung</p></div>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Die Einstiegspunkt-Tabelle</h2>
+<p>Das Routing-Muster ist ein <span class="term" data-definition="Pattern Matching ist eine Technik bei der Eingaben gegen vordefinierte Muster geprüft werden. Hier: Der Skill hat eine Tabelle mit typischen User-Aussagen und dem jeweiligen Einstiegspunkt. 'Mein Profil überzeugt nicht' → Phase 2. 'Ich poste aber keiner reagiert' → Phase 4.">Pattern-Matching</span> gegen natürliche Sprache. Jeder User-Input wird gegen die Einstiegspunkt-Tabelle gematcht:</p>
+
+<div class="translation-block">
+<div class="translation-code"><span class="translation-label">EINSTIEGSPUNKTE</span>
+<pre><code><span class="cc">| Benutzer sagt...              | Phase |</span>
+<span class="cs">"sichtbar werden"</span>              → <span class="cn">P1</span>
+<span class="cs">"Profil überzeugt nicht"</span>        → <span class="cn">P2</span>
+<span class="cs">"was soll ich posten"</span>           → <span class="cn">P3</span>
+<span class="cs">"keiner reagiert"</span>               → <span class="cn">P4</span>
+<span class="cs">"echte Community"</span>               → <span class="cn">P5</span>
+<span class="cs">"Zahlen stagnieren"</span>             → <span class="cn">P6</span>
+<span class="cs">"Follower zu Kunden"</span>            → <span class="cn">P7</span>
+<span class="cs">"Algorithmus"</span>                   → <span class="ct">Briefing</span></code></pre>
+</div>
+<div class="translation-english"><span class="translation-label">DESIGN-PATTERN</span><div class="translation-lines">
+<p class="tl"><strong>Warum eine Tabelle statt Logik?</strong> Claude kann keine echte if/else-Logik ausführen. Stattdessen zeigt die Tabelle dem Modell konkrete Beispiel-Inputs und die gewünschte Zuordnung. Claude generalisiert von diesen Beispielen.</p>
+<p class="tl"><strong>Erweiterungspunkt:</strong> Neue Einstiegspunkte hinzufügen = neue Zeile in der Tabelle. Z.B. "LinkedIn für Recruiter" → könnte eine neue Phase 8 triggern.</p>
+<p class="tl"><strong>Der Algorithmus-Briefing Sonderfall:</strong> Kein regulärer Phase-Einstieg sondern eine "Querschnitt-Funktion" die aus jeder Phase heraus aufgerufen werden kann. Liefert immer die aktuellen Algorithmus-Erkenntnisse, zugeschnitten auf die Situation.</p>
+</div></div>
+</div>
+
+<div class="callout callout-accent"><div class="callout-icon">💡</div><div class="callout-content"><strong class="callout-title">Das Orchestrator-Pattern</strong><p>Der Skill trennt WO eingestiegen wird (Orchestrator) von WAS dort passiert (Phasen-Definition). Das ist wie ein Telefonmenü ("Drücken Sie 1 für..., 2 für...") getrennt von den Abteilungen dahinter. Wenn du eine neue Phase hinzufügst, musst du nur die Einstiegspunkt-Tabelle UND die Phase selbst schreiben — der Rest bleibt unberührt.</p></div></div>
+</section>
+</div>
+</section>
+
+<!-- ===== M3: ANATOMIE EINER PHASE ===== -->
+<section class="module" id="m3" style="background:var(--color-bg-warm)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">03</span>
+<h1 class="module-title">Anatomie einer Phase</h1>
+<p class="module-subtitle">Wie jede der 7 Phasen aufgebaut ist — und wo du Änderungen vornimmst</p></header>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Die 5-Felder-Struktur</h2>
+<p>Jede Phase folgt demselben Bauplan. Wie <span class="term" data-definition="Ein Interface in der Softwareentwicklung ist ein Vertrag: 'Jede Klasse die dieses Interface implementiert MUSS diese Methoden haben.' Hier analog: Jede Phase MUSS diese 5 Felder haben. Das macht den Skill konsistent und erweiterbar — du weißt genau was du wo einfügen musst.">ein Interface</span> — jede Phase MUSS diese 5 Felder haben:</p>
+
+<div class="step-cards stagger-children">
+<div class="step-card animate-in" style="border-left-color:var(--color-deep-blue)"><div class="step-num" style="background:var(--color-deep-blue)">Z</div><div class="step-body"><strong>Ziel</strong><p>Ein Satz der beschreibt was am Ende der Phase erreicht sein muss. Dient als Kompass für Claude.</p></div></div>
+<div class="step-card animate-in" style="border-left-color:var(--color-accent)"><div class="step-num" style="background:var(--color-accent)">L</div><div class="step-body"><strong>Leitprinzip</strong><p>Eine fettgedruckte Überzeugung die alle Taktiken dieser Phase antreibt. Z.B. "Kommentieren ist der schnellste Weg zu Sichtbarkeit."</p></div></div>
+<div class="step-card animate-in" style="border-left-color:var(--color-actor-3)"><div class="step-num" style="background:var(--color-actor-3)">T</div><div class="step-body"><strong>Taktiken</strong><p>Konkrete Handlungsanweisungen, Tabellen, Listen, Formeln. Der operative Kern.</p></div></div>
+<div class="step-card animate-in" style="border-left-color:var(--color-info)"><div class="step-num" style="background:var(--color-info)">W</div><div class="step-body"><strong>Warnsignale (optional)</strong><p>Was schiefgehen kann und wie der Skill darauf reagieren soll. Nicht jede Phase hat das.</p></div></div>
+<div class="step-card animate-in" style="border-left-color:var(--color-actor-6)"><div class="step-num" style="background:var(--color-actor-6)">A</div><div class="step-body"><strong>Ausgabe</strong><p>Nummerierte Liste konkreter Deliverables. Was der User nach der Phase in Händen hält.</p></div></div>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Beispiel: Phase 4 zerlegt</h2>
+
+<div class="translation-block">
+<div class="translation-code"><span class="translation-label">PHASE 4: ENGAGEMENT</span>
+<pre><code><span class="cc">### Ziel</span>
+Sichtbarkeit aufbauen durch
+systematische Gespräche
+
+<span class="cc">### Leitprinzip</span>
+<span class="ck">**Kommentieren ist der schnellste
+Weg zu Sichtbarkeit.**</span> Ein
+50-Wörter-Kommentar bringt oft
+mehr als ein eigener Post.
+
+<span class="cc">### Taktiken</span>
+- Tägliche 15-Min-Routine
+- Target-Liste (20-30 Accounts)
+- Kommentar-Qualitätskriterien
+- Eigene Post-Engagement-Strategie
+- Verbindungs-Strategie
+
+<span class="cc">### Ausgabe</span>
+<span class="cn">1.</span> Target-Liste: 20 Accounts
+<span class="cn">2.</span> Tägliche Routine (Zeitplan)
+<span class="cn">3.</span> 5 Kommentar-Templates
+<span class="cn">4.</span> Verbindungs-Nachricht
+<span class="cn">5.</span> Wöchentliches Engagement-Ziel</code></pre>
+</div>
+<div class="translation-english"><span class="translation-label">DESIGN-ANATOMIE</span><div class="translation-lines">
+<p class="tl"><strong>Ziel:</strong> Einzeiler — gibt Claude die Richtung. Alles was der Skill in dieser Phase tut, muss diesem Ziel dienen.</p>
+<p class="tl"><strong>Leitprinzip:</strong> Fett gedruckt + eine Erklärung mit konkreter Zahl (50 Wörter). Das ist der "Glaubenssatz" der Phase — Claude orientiert sich daran wenn es unsicher ist.</p>
+<p class="tl"><strong>Taktiken:</strong> Hier steckt 80% des Inhalts. Jede Taktik hat Unterstruktur: Schritte, Gut/Schlecht-Beispiele, Metriken. DAS ist der Teil den du am häufigsten ändern wirst.</p>
+<p class="tl"><strong>Ausgabe:</strong> Nummerierte Deliverables. Claude weiß: "Ich bin erst fertig wenn ich alle 5 Punkte geliefert habe." Die Nummerierung erzeugt Vollständigkeitsdruck beim Modell.</p>
+</div></div>
+</div>
+
+<div class="callout callout-info"><div class="callout-icon">🔌</div><div class="callout-content"><strong class="callout-title">Erweiterungspunkt: Neue Phase hinzufügen</strong><p>Kopiere die 5-Felder-Struktur einer bestehenden Phase, ändere den Inhalt, und füge eine Zeile in der Einstiegspunkt-Tabelle hinzu. Fertig. Du brauchst nichts am Orchestrator selbst zu ändern — er ist ein offener Dispatcher der unbegrenzt viele Phasen bedienen kann.</p></div></div>
+</section>
+</div>
+</section>
+
+<!-- ===== M4: WISSENSSCHICHT ===== -->
+<section class="module" id="m4" style="background:var(--color-bg)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">04</span>
+<h1 class="module-title">Die Wissensschicht</h1>
+<p class="module-subtitle">Algorithmus-Daten, Format-Rankings und eingebaute Heuristiken</p></header>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Drei Wissenstypen</h2>
+<p>Der Skill enthält drei Arten von Wissen. Jede altert unterschiedlich schnell — und das bestimmt wie oft du sie aktualisieren musst:</p>
+
+<div class="pattern-cards stagger-children">
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-error)"><div class="pattern-icon" style="background:var(--color-error)">🔄</div><div class="pattern-title">Volatil (3–6 Monate)</div><div class="pattern-desc"><strong>Algorithmus-Daten:</strong> Format-Rankings, Engagement-Gewichtungen, Timing-Empfehlungen. LinkedIn ändert den Algorithmus mehrmals jährlich.</div></div>
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-warning)"><div class="pattern-icon" style="background:var(--color-warning)">📊</div><div class="pattern-title">Semi-stabil (1–2 Jahre)</div><div class="pattern-desc"><strong>Strategien & Taktiken:</strong> Hook-Typen, Kommentar-Methoden, Profil-Optimierung. Ändern sich mit Plattform-Trends.</div></div>
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-success)"><div class="pattern-icon" style="background:var(--color-success)">🏛️</div><div class="pattern-title">Stabil (5+ Jahre)</div><div class="pattern-desc"><strong>Philosophie & Prinzipien:</strong> "Substanz vor Viralität", "Gespräche vor Applaus". Zeitlose Grundsätze die sich kaum ändern.</div></div>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Die 7 Grundsätze — Das Fundament</h2>
+<p>Diese Prinzipien sind die <span class="term" data-definition="Invarianten sind Regeln die IMMER gelten, egal was sich sonst ändert. In einer Datenbank: 'Ein Kontostand kann nie negativ sein.' Hier: 'Substanz vor Viralität gilt egal wie sich der Algorithmus ändert.' Sie sind das Fundament auf dem alles andere aufbaut.">Invarianten</span> des Skills — sie ändern sich nie und steuern alle anderen Entscheidungen:</p>
+
+<div class="badge-list stagger-children">
+<div class="badge-item animate-in"><span class="badge-code">GP-1</span> Positionierung vor Posting</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-2</span> Persönlichkeit schlägt Unternehmensseite (5x Engagement)</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-3</span> Substanz vor Viralität</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-4</span> Gespräche vor Applaus (Kommentare 8–15x > Likes)</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-5</span> Speichern ist das neue Teilen (Saves 5x > Likes)</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-6</span> System schlägt Inspiration</div>
+<div class="badge-item animate-in"><span class="badge-code">GP-7</span> Eigentum statt Miete (E-Mail > Follower)</div>
+</div>
+
+<div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-content"><strong class="callout-title">Ändern auf eigene Gefahr</strong><p>Wenn du einen Grundsatz änderst, ändert sich das Verhalten ALLER Phasen. GP-3 "Substanz vor Viralität" beeinflusst z.B. wie die Content-Phase Posts bewertet, wie die Verifikation urteilt, und welche Kommentar-Strategien empfohlen werden. Ändere Grundsätze nur wenn du die Kaskadeneffekte verstehst.</p></div></div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Eingebettete Zahlen — Die Heuristiken</h2>
+<p>Überall im Skill sind konkrete Zahlen eingebaut die das Verhalten steuern. Hier die wichtigsten:</p>
+
+<div class="badge-list stagger-children">
+<div class="badge-item animate-in"><span class="badge-code">60-90 Min</span> Goldene Stunde nach dem Posten (Stufe 2 des Algorithmus)</div>
+<div class="badge-item animate-in"><span class="badge-code">2-5%</span> Seed-Audience die den Post zuerst sieht</div>
+<div class="badge-item animate-in"><span class="badge-code">210 Zeichen</span> See-more-Cutoff (Hook-Länge)</div>
+<div class="badge-item animate-in"><span class="badge-code">3-5/Woche</span> Optimale Posting-Frequenz</div>
+<div class="badge-item animate-in"><span class="badge-code">15-20 Min</span> Tägliche Engagement-Routine</div>
+<div class="badge-item animate-in"><span class="badge-code">20-30</span> Target-Accounts für strategisches Kommentieren</div>
+<div class="badge-item animate-in"><span class="badge-code">3-5</span> Hashtags pro Post (mehr schadet)</div>
+<div class="badge-item animate-in"><span class="badge-code">90/10</span> Mehrwert-zu-Verkauf-Ratio bei Monetarisierung</div>
+</div>
+
+<div class="callout callout-accent"><div class="callout-icon">💡</div><div class="callout-content"><strong class="callout-title">Zahlen als Steuerungshebel</strong><p>Diese Zahlen sind die "Knobs" des Skills — drehe sie und das Verhalten ändert sich sofort. Wenn du z.B. die Posting-Frequenz von "3–5/Woche" auf "täglich" änderst, ändert sich automatisch das Wochen-Rezept, die Engagement-Routine und die Burnout-Warnung. Jede Zahl hat Kaskadeneffekte.</p></div></div>
+</section>
+</div>
+</section>
+
+<!-- ===== M5: VERIFIKATION & STIL ===== -->
+<section class="module" id="m5" style="background:var(--color-bg-warm)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">05</span>
+<h1 class="module-title">Die Verifikationsschicht</h1>
+<p class="module-subtitle">6 Prüfpunkte die JEDEN Output durchlaufen — plus Gesprächsstil-Regeln</p></header>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">6 Prüfpunkte</h2>
+<p>Am Ende des Skills steht eine <span class="term" data-definition="Eine Verifikationsschicht ist ein finaler Qualitäts-Check bevor ein Output an den User geliefert wird. Wie die Qualitätskontrolle am Ende eines Fließbands — jedes Produkt wird gegen eine Checkliste geprüft, bevor es das Werk verlässt.">Verifikationsschicht</span> — 6 Checks die Claude dazu bringt, jeden Output selbst zu prüfen bevor er präsentiert wird:</p>
+
+<div class="translation-block">
+<div class="translation-code"><span class="translation-label">VERIFIKATION</span>
+<pre><code><span class="cc">## Verifikation</span>
+
+<span class="cn">1.</span> <span class="ck">Algorithmus-Kongruenz</span>
+   Widerspricht die Empfehlung
+   bekannten Algorithmus-Regeln?
+
+<span class="cn">2.</span> <span class="ck">Positionierungs-Konsistenz</span>
+   Passt zur Positionierung
+   und den Themen-Lanes?
+
+<span class="cn">3.</span> <span class="ck">Machbarkeit</span>
+   Kann der User das mit
+   seinem Zeitbudget umsetzen?
+
+<span class="cn">4.</span> <span class="ck">Messbarkeit</span>
+   Gibt es einen konkreten
+   Erfolgs-Indikator?
+
+<span class="cn">5.</span> <span class="ck">Authentizität-Check</span>
+   Klingt das nach dem User —
+   oder nach LinkedIn-Coach?
+
+<span class="cn">6.</span> <span class="ck">Anti-Template-Prüfung</span>
+   Überstrapaziertes Pattern?</code></pre>
+</div>
+<div class="translation-english"><span class="translation-label">WARUM SO</span><div class="translation-lines">
+<p class="tl"><strong>Check 1:</strong> Verhindert dass der Skill z.B. Links im Post-Text empfiehlt (−60% Reichweite). Hardcoded Wissen als Leitplanke.</p>
+<p class="tl"><strong>Check 2:</strong> Verhindert "Scope Creep" — dass der Skill Empfehlungen gibt die nicht zu den definierten Lanes passen.</p>
+<p class="tl"><strong>Check 3:</strong> Der kritischste Check für Praxistauglichkeit. Nicht jeder hat 2h/Tag für LinkedIn. Das Zeitbudget limitiert alles.</p>
+<p class="tl"><strong>Check 4:</strong> Jede Empfehlung braucht einen KPI. Ohne Messgröße weiß der User nie ob es funktioniert.</p>
+<p class="tl"><strong>Check 5:</strong> Claude neigt zu generischen Formulierungen. Dieser Check zwingt zur Personalisierung.</p>
+<p class="tl"><strong>Check 6:</strong> Der Algorithmus erkennt und bestraft Template-Content. Dieser Check verhindert dass der Skill selbst solchen produziert.</p>
+</div></div>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Gesprächsstil als Constraint</h2>
+<p>Am Ende des Skills stehen 6 Tonalitätsregeln die Claude daran hindern, in typische KI-Berater-Muster zu verfallen:</p>
+
+<div class="pattern-cards stagger-children">
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-deep-blue)"><div class="pattern-title">Coach, nicht Guru</div><div class="pattern-desc">Fragen stellen, gemeinsam erarbeiten. Nicht belehren. Kein "Du musst..."</div></div>
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-accent)"><div class="pattern-title">Ehrlich bei Schwächen</div><div class="pattern-desc">Wenn das Profil schlecht ist, klar sagen. Kein Schönreden.</div></div>
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-actor-3)"><div class="pattern-title">Eine Sache pro Woche</div><div class="pattern-desc">Nicht mit 20 Optimierungen überfordern. EINE Veränderung die DIESE Woche umgesetzt wird.</div></div>
+<div class="pattern-card animate-in" style="border-top:3px solid var(--color-info)"><div class="pattern-title">Langfrist-Perspektive</div><div class="pattern-desc">"6–12 Monate für echte Traktion." Gegen die Erwartung schneller Ergebnisse anarbeiten.</div></div>
+</div>
+</section>
+</div>
+</section>
+
+<!-- ===== M6: QUIZ ===== -->
+<section class="module" id="m6" style="background:var(--color-bg)">
+<div class="module-content">
+<header class="module-header animate-in"><span class="module-number">06</span>
+<h1 class="module-title">Teste dein Verständnis</h1>
+<p class="module-subtitle">Kannst du den Skill gezielt verändern?</p></header>
+
+<section class="screen animate-in">
+<div class="quiz-container">
+
+<div class="quiz-question-block" data-correct="q1c">
+<div class="quiz-scenario"><span class="quiz-scenario-label">Szenario</span><p>Du willst eine neue Phase 8 "LinkedIn für Recruiter" hinzufügen. Was musst du minimal ändern?</p></div>
+<h3 class="quiz-question">Welche zwei Stellen im Skill müssen editiert werden?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-value="q1a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nur die Einstiegspunkt-Tabelle — der Rest ergibt sich</span></button>
+<button class="quiz-option" data-value="q1b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Alles: Frontmatter, Orchestrator, Philosophie, Verifikation</span></button>
+<button class="quiz-option" data-value="q1c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Die Einstiegspunkt-Tabelle (neuer Trigger) + die neue Phase selbst (5-Felder-Struktur)</span></button>
+</div>
+<div class="quiz-feedback" data-correct-text="<strong>Genau!</strong> Zwei Änderungen: (1) Neue Zeile in der Einstiegspunkt-Tabelle für den Trigger, (2) Neue Phase mit Ziel, Leitprinzip, Taktiken, Warnsignale, Ausgabe. Optional: Frontmatter-Description um neue Trigger-Begriffe erweitern. Der Orchestrator selbst bleibt unverändert." data-incorrect-text="<strong>Nicht ganz.</strong> Du brauchst genau zwei Stellen: Die Einstiegspunkt-Tabelle (neuer Trigger) und die Phase selbst (5-Felder-Struktur: Ziel, Leitprinzip, Taktiken, Warnsignale, Ausgabe). Optional die Description im Frontmatter erweitern."></div>
+</div>
+
+<div class="quiz-question-block" data-correct="q2b">
+<div class="quiz-scenario"><span class="quiz-scenario-label">Szenario</span><p>LinkedIn ändert den Algorithmus: Karussells performen plötzlich 50% schlechter, dafür sind native Polls das neue Top-Format.</p></div>
+<h3 class="quiz-question">Welche Stellen im Skill musst du aktualisieren?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-value="q2a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nur das Format-Ranking in der Algorithmus-Sektion</span></button>
+<button class="quiz-option" data-value="q2b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Format-Ranking + Content-Phase (Format-Mix-Empfehlung) + Verifikation (Check 1 prüft Algorithmus-Kongruenz)</span></button>
+<button class="quiz-option" data-value="q2c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Alle 7 Phasen müssen angepasst werden</span></button>
+</div>
+<div class="quiz-feedback" data-correct-text="<strong>Genau!</strong> Algorithmus-Daten sind 'volatil' (3–6 Monate Haltbarkeit). Bei einer Änderung musst du: (1) das Format-Ranking aktualisieren, (2) die Content-Phase anpassen (Karussells runter, Polls rein im Format-Mix), (3) sicherstellen dass Verifikation-Check 1 die neuen Regeln kennt. Kaskadeneffekt — aber nur 3 Stellen." data-incorrect-text="<strong>Nicht ganz.</strong> Algorithmus-Änderungen betreffen nicht alle Phasen — nur die, die Format-Wissen nutzen: das Format-Ranking (Datenbasis), die Content-Phase (empfiehlt Formate), und die Verifikation (prüft Algorithmus-Kongruenz). Drei Stellen, nicht eine und nicht alle."></div>
+</div>
+
+<div class="quiz-question-block" data-correct="q3a">
+<div class="quiz-scenario"><span class="quiz-scenario-label">Szenario</span><p>Ein User beschwert sich: "Der Skill empfiehlt mir Links im Post-Text zu setzen." Du prüfst den Skill — in keiner Phase steht das.</p></div>
+<h3 class="quiz-question">Wo liegt das Problem am wahrscheinlichsten?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-value="q3a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Der Verifikations-Check 1 (Algorithmus-Kongruenz) hat das nicht abgefangen — er muss schärfer formuliert werden</span></button>
+<button class="quiz-option" data-value="q3b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Das ist ein Bug in Claude, nicht im Skill</span></button>
+<button class="quiz-option" data-value="q3c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Die Einstiegspunkt-Tabelle hat den User falsch geroutet</span></button>
+</div>
+<div class="quiz-feedback" data-correct-text="<strong>Genau!</strong> Die Verifikationsschicht ist die letzte Verteidigungslinie. Wenn Claude trotzdem Links im Post-Text empfiehlt, bedeutet das: Check 1 ist nicht explizit genug. Die Lösung: 'Links im Post-Text empfehlen' als konkretes Negativbeispiel in Check 1 hinzufügen. Je expliziter die Checks, desto zuverlässiger." data-incorrect-text="<strong>Nicht ganz.</strong> Claude halluziniert manchmal — aber genau dafür gibt es die Verifikationsschicht. Wenn sie es nicht abfängt, ist sie nicht explizit genug. Die Lösung: 'Niemals Links im Post-Text empfehlen' als konkretes Negativbeispiel in Check 1 einfügen."></div>
+</div>
+
+<div class="quiz-question-block" data-correct="q4c">
+<div class="quiz-scenario"><span class="quiz-scenario-label">Szenario</span><p>Du willst den Grundsatz GP-4 "Gespräche vor Applaus" abschwächen zu "Likes und Kommentare sind gleich wichtig."</p></div>
+<h3 class="quiz-question">Was passiert?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-value="q4a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nur Phase 4 (Engagement) ändert sich</span></button>
+<button class="quiz-option" data-value="q4b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nichts — die Grundsätze sind dekorativ</span></button>
+<button class="quiz-option" data-value="q4c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Kaskadeneffekt: Engagement-Routine, Content-Bewertung, Analytics-Metriken und Monetarisierungs-Signale ändern sich alle</span></button>
+</div>
+<div class="quiz-feedback" data-correct-text="<strong>Genau!</strong> Grundsätze sind Invarianten — sie durchdringen ALLES. GP-4 beeinflusst: welche Kommentare empfohlen werden (P4), welche Metriken als wichtig gelten (P6), wann die Monetarisierungs-Reife erreicht ist (P7), und wie die Verifikation Content bewertet. Die 7 Grundsätze zu ändern ist wie das Fundament eines Hauses umzubauen." data-incorrect-text="<strong>Nicht ganz.</strong> Grundsätze sind keine Deko — sie sind Invarianten die alle Phasen durchdringen. GP-4 beeinflusst Engagement-Empfehlungen, Content-Bewertung, Analytics-Metriken und Monetarisierungs-Signale. Die 7 Grundsätze zu ändern hat massive Kaskadeneffekte."></div>
+</div>
+
+<button class="quiz-check-btn" onclick="checkAllQuizzes()">Antworten prüfen</button>
+</div>
+</section>
+
+<section class="screen animate-in">
+<h2 class="screen-heading">Cheat Sheet: Wo was ändern</h2>
+
+<div class="icon-rows stagger-children">
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-error)">🔥</div><div><strong>Algorithmus veraltet?</strong><p>→ Algorithmus-Sektion + Content-Phase (Format-Mix) + Verifikation Check 1</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-accent)">➕</div><div><strong>Neue Phase?</strong><p>→ Einstiegspunkt-Tabelle + Phase mit 5-Felder-Struktur + optional Frontmatter</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-info)">🔧</div><div><strong>Taktik anpassen?</strong><p>→ Nur innerhalb der betroffenen Phase → Taktiken-Sektion</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-actor-6)">📊</div><div><strong>Zahlen/Heuristiken?</strong><p>→ Direkt an der Stelle ändern, aber Kaskadeneffekte prüfen</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-deep-blue)">🏛️</div><div><strong>Grundsätze?</strong><p>→ Nur ändern wenn du die Kaskadeneffekte auf ALLE Phasen verstehst</p></div></div>
+<div class="icon-row animate-in"><div class="icon-circle" style="background:var(--color-actor-3)">🛡️</div><div><strong>Skill produziert falschen Output?</strong><p>→ Verifikations-Checks verschärfen (explizite Negativbeispiele)</p></div></div>
+</div>
+
+<div class="callout callout-accent" style="margin-top:var(--space-8)"><div class="callout-icon">🔧</div><div class="callout-content"><strong class="callout-title">Die Architektur in einem Satz</strong><p>Invariante Grundsätze definieren die Weltsicht. Volatile Daten liefern die Fakten. Der Orchestrator routet zum richtigen Ort. 7 Phasen mit identischer Struktur erzeugen die Antworten. Die Verifikation prüft alles gegen die Grundsätze. Änderungen an oberen Schichten kaskadieren nach unten — deshalb Grundsätze vorsichtig, Taktiken mutig ändern.</p></div></div>
+</section>
+</div>
+</section>
+
+<script>
+(function(){
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.1});
+document.querySelectorAll('.animate-in').forEach(el=>obs.observe(el));
+document.querySelectorAll('.stagger-children').forEach(p=>Array.from(p.children).forEach((c,i)=>c.style.setProperty('--stagger-index',i)));
+const pb=document.querySelector('.progress-bar');
+
+const dots=document.querySelectorAll('.nav-dot'),mods=document.querySelectorAll('.module');
+const navH=60;
+function activeIndex(){let idx=0;mods.forEach((m,i)=>{if(m.getBoundingClientRect().top<=navH+20)idx=i});return idx}
+function updateDots(){const ai=activeIndex();dots.forEach((d,i)=>{d.classList.toggle('active',i===ai);if(i<=ai)d.classList.add('visited')})}
+window.addEventListener('scroll',()=>requestAnimationFrame(()=>{if(pb)pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';updateDots()}),{passive:true});
+updateDots();
+dots.forEach(d=>d.addEventListener('click',()=>{const t=document.getElementById(d.dataset.target);if(!t)return;window.scrollTo({top:Math.max(0,t.getBoundingClientRect().top+window.scrollY-navH),behavior:'smooth'})}));
+function scrollToMod(i){window.scrollTo({top:Math.max(0,mods[i].getBoundingClientRect().top+window.scrollY-navH),behavior:'smooth'})}
+window.nextModule=()=>{scrollToMod(Math.min(activeIndex()+1,mods.length-1))};
+window.prevModule=()=>{scrollToMod(Math.max(activeIndex()-1,0))};
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowDown'||e.key==='ArrowRight'){nextModule();e.preventDefault()}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){prevModule();e.preventDefault()}});
+
+window.selectOption=function(btn){const b=btn.closest('.quiz-question-block');b.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));btn.classList.add('selected')};
+window.checkAllQuizzes=function(){document.querySelectorAll('.quiz-question-block').forEach(q=>{const sel=q.querySelector('.quiz-option.selected'),fb=q.querySelector('.quiz-feedback'),cv=q.dataset.correct;if(!sel){fb.innerHTML='Wähle erst eine Antwort!';fb.className='quiz-feedback show error';return}if(sel.dataset.value===cv){sel.classList.add('correct');fb.innerHTML=fb.dataset.correctText;fb.className='quiz-feedback show success'}else{sel.classList.add('incorrect');const cb=q.querySelector('[data-value="'+cv+'"]');if(cb)cb.classList.add('correct');fb.innerHTML=fb.dataset.incorrectText;fb.className='quiz-feedback show error'}q.querySelectorAll('.quiz-option').forEach(o=>o.style.pointerEvents='none')})};
+
+let at=null;function pt(t,tip){const r=t.getBoundingClientRect(),tw=300;let l=Math.max(8,Math.min(r.left+r.width/2-tw/2,window.innerWidth-tw-8));document.body.appendChild(tip);const th=tip.offsetHeight;if(r.top-th-8<0){tip.style.top=(r.bottom+8)+'px';tip.classList.add('flip')}else{tip.style.top=(r.top-th-8)+'px';tip.classList.remove('flip')}tip.style.left=l+'px'}
+document.querySelectorAll('.term').forEach(t=>{const tip=document.createElement('span');tip.className='term-tooltip';tip.textContent=t.dataset.definition;
+t.addEventListener('mouseenter',()=>{if(at&&at!==tip){at.classList.remove('visible');at.remove()}pt(t,tip);requestAnimationFrame(()=>tip.classList.add('visible'));at=tip});
+t.addEventListener('mouseleave',()=>{tip.classList.remove('visible');setTimeout(()=>{if(!tip.classList.contains('visible'))tip.remove()},150);at=null});
+t.addEventListener('click',e=>{e.stopPropagation();if(at&&at!==tip){at.classList.remove('visible');at.remove()}if(tip.classList.contains('visible')){tip.classList.remove('visible');tip.remove();at=null}else{pt(t,tip);requestAnimationFrame(()=>tip.classList.add('visible'));at=tip}})});
+document.addEventListener('click',()=>{if(at){at.classList.remove('visible');at.remove();at=null}});
+})();
+</script>
+<footer class="site-footer"><div class="footer-inner">
+<span>© 2026 Mark Zimmermann</span>
+<div class="footer-links"><a href="https://godmodeai2025.github.io/MarkZimmermann/" target="_blank" rel="noopener">Impressum</a></div>
+</div></footer>
+</body>
+</html>
