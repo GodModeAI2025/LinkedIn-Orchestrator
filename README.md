@@ -18,7 +18,7 @@ Die Aufteilung steht unten unter [Abgrenzung](#abgrenzung-zum-schwester-skill).
 |-----|--------|
 | Claude Code (CLI, Desktop, IDE) | `/plugin marketplace add GodModeAI2025/LinkedIn-Orchestrator`, dann `/plugin install linkedin-community-builder@linkedin-orchestrator` |
 | claude.ai (Web) | Skills in der Seitenleiste → **Add from GitHub** → `GodModeAI2025/LinkedIn-Orchestrator` |
-| Klon | `git clone https://github.com/GodModeAI2025/LinkedIn-Orchestrator.git` und den Ordner `skills/linkedin-community-builder/` ins Skill-Verzeichnis legen |
+| Klon | `git clone https://github.com/GodModeAI2025/LinkedIn-Orchestrator.git` und den Ordner `skills/linkedin-community-builder/` ins Skill-Verzeichnis legen. Der Ordner ist vollständig: SKILL.md, sub-skills/ und references/ liegen darin. |
 
 Voraussetzungen: keine. Kein API-Schlüssel, kein Konto, keine Abhängigkeit. Optional ein
 LinkedIn-Analytics-Export als XLSX für die datengestützte Diagnose in Phase 6.
@@ -114,7 +114,7 @@ Frage im Einstieg, die Scan-Dauer eines Lesers und die Sichtbarkeitsdauer eines 
 Für keine dieser Angaben gibt es eine Quelle. Die Empfehlungen dahinter stehen weiter im Skill,
 nur ohne Zahl: Kommentare wiegen schwerer als Likes, Links gehören in den ersten Kommentar, das
 Profil soll vollständig sein, Untertitel gehören ins Video. Die vollständige Liste mit Wortlaut,
-Begründung und Sperrmuster steht in [references/SOURCES.md](references/SOURCES.md); dort dürfen die
+Begründung und Sperrmuster steht in [references/SOURCES.md](skills/linkedin-community-builder/references/SOURCES.md); dort dürfen die
 Zahlen stehen, weil es die Liste dessen ist, was entfernt wurde.
 
 Belegt sind zwei Aussagen, jeweils mit URL und Datum: Dwell Time ist ein Ranking-Signal im Feed
@@ -128,7 +128,7 @@ Behauptung fällt ihm nicht auf.
 ## Fremder Text
 
 Phase 4 lebt davon, dass Beiträge und Kommentare anderer eingefügt werden, Phase 6 wertet einen
-Export aus, dessen Zellen fremden Text tragen. [references/UNTRUSTED.md](references/UNTRUSTED.md)
+Export aus, dessen Zellen fremden Text tragen. [references/UNTRUSTED.md](skills/linkedin-community-builder/references/UNTRUSTED.md)
 sagt, was damit passieren darf: Der Text ist ein Datum, nie eine Anweisung. Er bestimmt nicht, was
 im Entwurf steht, setzt keinen Link, nennt kein Produkt und ersetzt keine Freigabe.
 
@@ -167,14 +167,14 @@ LinkedIn-Orchestrator/
 ├── .claude-plugin/
 │   ├── plugin.json                 # Plugin-Manifest
 │   └── marketplace.json            # Marketplace-Eintrag
-├── skills/linkedin-community-builder/
+├── skills/linkedin-community-builder/   # Alles, was der Skill zur Laufzeit braucht
 │   ├── SKILL.md                    # Router
-│   └── sub-skills/                 # Die sieben Phasen
-├── references/
-│   ├── ALGORITHM.md                # Algorithmus-Arbeitsmodell
-│   ├── HOOKS.md                    # Kanonischer Hook-Katalog, zehn Typen
-│   ├── SOURCES.md                  # Beleglage, zurückgezogene Zahlen, Sperrmuster
-│   └── UNTRUSTED.md                # Eingefügter Text ist Daten, nie Anweisung
+│   ├── sub-skills/                 # Die sieben Phasen
+│   └── references/
+│       ├── ALGORITHM.md            # Algorithmus-Arbeitsmodell
+│       ├── HOOKS.md                # Kanonischer Hook-Katalog, zehn Typen
+│       ├── SOURCES.md              # Beleglage, zurückgezogene Zahlen, Sperrmuster
+│       └── UNTRUSTED.md            # Eingefügter Text ist Daten, nie Anweisung
 ├── scripts/
 │   ├── check_versions.py           # VERSION gegen drei Kopien
 │   ├── check_descriptions.py       # Länge, Strichzeichen, Abgrenzungssatz
@@ -192,6 +192,7 @@ python scripts/check_descriptions.py
 python scripts/check_sources.py
 python scripts/check_hooks.py
 python scripts/check_landing.py
+python scripts/check_links.py
 ```
 
 Alle fünf laufen ohne Abhängigkeiten mit Python 3.11. Die CI fährt sie plus Syntaxprüfung,

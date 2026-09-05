@@ -70,17 +70,9 @@ jobs:
           test -f .claude-plugin/marketplace.json
           python -c "import json,sys; [json.load(open(p)) for p in ['.claude-plugin/plugin.json','.claude-plugin/marketplace.json']]"
 
-      # Jede Datei, auf die der Skill-Text verweist, muss es geben. Ein toter
-      # Verweis faellt im Gespraech erst auf, wenn die Phase erreicht ist.
-      - name: Verweise aufloesbar
-        run: |
-          fehlt=0
-          while IFS= read -r ziel; do
-            if [ ! -f "$ziel" ] && [ ! -f "skills/linkedin-community-builder/$ziel" ]; then
-              echo "FEHLER: Verweis auf $ziel laeuft ins Leere" >&2
-              fehlt=1
-            fi
-          done < <(grep -rhoE '`(references|sub-skills)/[A-Za-z0-9._-]+\.md`' \
-                     skills/linkedin-community-builder references \
-                   | tr -d '`' | sort -u)
-          exit "$fehlt"
+      # Jede Datei, auf die der Skill-Text verweist, muss es geben, und zwar
+      # relativ zum Skill-Verzeichnis. Genau das war vorher falsch: references/
+      # lag im Wurzelverzeichnis, eine Ebene ueber dem Skill, und alle vier
+      # Verweise waeren im installierten Plugin ins Leere gelaufen.
+      - name: Verweise pruefen
+        run: python scripts/check_links.py

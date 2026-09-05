@@ -13,6 +13,7 @@ python scripts/check_descriptions.py
 python scripts/check_sources.py
 python scripts/check_hooks.py
 python scripts/check_landing.py
+python scripts/check_links.py
 ```
 
 Schlägt eine davon fehl, wird nicht gepusht. Die CI fährt dieselben Prüfungen und zusätzlich die
@@ -40,6 +41,12 @@ Geviert- oder Halbgeviertstrich und endet mit dem Abgrenzungssatz, der
 **Struktur.** SKILL.md ist der Router und bleibt kurz. Der Ablauf einer Phase steht in
 `sub-skills/phase-*.md`, das Algorithmus-Wissen in `references/ALGORITHM.md`, der Hook-Katalog in
 `references/HOOKS.md`. Wer eine Phase erweitert, erweitert die Phasendatei.
+
+**Selbstständigkeit des Skill-Ordners.** Alle diese Pfade sind relativ zu
+`skills/linkedin-community-builder/`, und alles, worauf der Skill verweist, liegt darin. Ein
+Verweis, der aus dem Ordner herausführt, ist im installierten Plugin ein toter Link: Claude lädt
+den Skill aus seinem eigenen Verzeichnis, nicht aus dem Repo-Wurzelverzeichnis. Neue Referenzen
+kommen unter `skills/linkedin-community-builder/references/`, nicht ins Wurzelverzeichnis.
 
 **Eingefügter Text.** `references/UNTRUSTED.md` ist die kanonische Regel für alles, was der
 Benutzer einfügt oder importiert. Neue Schritte, die fremden Text verarbeiten, verweisen darauf,

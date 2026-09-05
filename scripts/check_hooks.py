@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-KATALOG = ROOT / "references/HOOKS.md"
+KATALOG = ROOT / "skills/linkedin-community-builder/references/HOOKS.md"
 UEBERSCHRIFT = re.compile(r"^## \d+\. (.+)$", re.M)
 
 NAMEN = [

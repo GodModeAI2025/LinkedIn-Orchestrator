@@ -16,7 +16,7 @@ Das Verfahren ist aus dem Schwester-Repo
 [LinkedInOptimizer](https://github.com/GodModeAI2025/LinkedInOptimizer) übernommen, samt Prüfskript.
 Dort waren dieselben Zahlen bereits zurückgezogen, während sie hier noch standen.
 
-`scripts/check_sources.py` prüft, dass jede im Skill verwendete Quellen-ID hier existiert, dass jede
+`LinkedIn-Orchestrator/scripts/check_sources.py` prüft, dass jede im Skill verwendete Quellen-ID hier existiert, dass jede
 Zeile eine URL und ein Datum trägt und dass das Prüfdatum nach dem Stand liegt. Die Sperren gegen
 zurückgezogene Aussagen erzeugt dasselbe Skript aus der Spalte „Sperrmuster". Sie prüfen
 Schreibweisen, keine Aussagen: Ein frei formulierter Satz, der eine zurückgezogene Behauptung in
@@ -59,7 +59,7 @@ egal. Drei Punkte stehen für eine Lücke von bis zu 40 Zeichen in derselben Zei
 
 Diese Lücke ist zugleich die Grenze der Tabelle: Auf der Landingpage stand die Prozentspalte des
 Format-Rankings rund 120 Zeichen Markup von ihrem Label entfernt, ein Kontextmuster hätte sie nicht
-gefasst. Für diesen Fall steht in `scripts/check_sources.py` eine eigene Prüfung im Code:
+gefasst. Für diesen Fall steht in `LinkedIn-Orchestrator/scripts/check_sources.py` eine eigene Prüfung im Code:
 `<span class="rank-pct">` darf keine Ziffer enthalten. Das ist ein Codediff und keine Tabellenzelle.
 
 | Frühere Aussage | Stand bis | Warum entfernt | Sperrmuster |

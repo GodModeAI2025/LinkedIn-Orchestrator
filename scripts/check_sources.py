@@ -88,7 +88,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCES = ROOT / "references" / "SOURCES.md"
+SOURCES = ROOT / "skills" / "linkedin-community-builder" / "references" / "SOURCES.md"
 
 # Dateien, in denen Quellen-IDs zitiert werden duerfen und in denen die
 # zurueckgezogenen Aussagen nicht mehr vorkommen duerfen. SOURCES.md selbst ist
@@ -103,11 +103,11 @@ GEPRUEFTE_DATEIEN = [
     "skills/linkedin-community-builder/sub-skills/phase-5-community.md",
     "skills/linkedin-community-builder/sub-skills/phase-6-analytics.md",
     "skills/linkedin-community-builder/sub-skills/phase-7-monetarisierung.md",
-    "references/ALGORITHM.md",
+    "skills/linkedin-community-builder/references/ALGORITHM.md",
     "README.md",
     "index.html",
     "developer.html",
-    "references/UNTRUSTED.md",
+    "skills/linkedin-community-builder/references/UNTRUSTED.md",
 ]
 
 DATUM = re.compile(r"\d{4}-\d{2}-\d{2}")
