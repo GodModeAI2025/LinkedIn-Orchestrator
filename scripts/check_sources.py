@@ -96,6 +96,14 @@ SOURCES = ROOT / "references" / "SOURCES.md"
 # dessen, was entfernt wurde, und in der Spalte mit den Sperrmustern.
 GEPRUEFTE_DATEIEN = [
     "skills/linkedin-community-builder/SKILL.md",
+    "skills/linkedin-community-builder/sub-skills/phase-1-positionierung.md",
+    "skills/linkedin-community-builder/sub-skills/phase-2-profil.md",
+    "skills/linkedin-community-builder/sub-skills/phase-3-content-architektur.md",
+    "skills/linkedin-community-builder/sub-skills/phase-4-engagement.md",
+    "skills/linkedin-community-builder/sub-skills/phase-5-community.md",
+    "skills/linkedin-community-builder/sub-skills/phase-6-analytics.md",
+    "skills/linkedin-community-builder/sub-skills/phase-7-monetarisierung.md",
+    "references/ALGORITHM.md",
     "README.md",
     "index.html",
     "developer.html",
