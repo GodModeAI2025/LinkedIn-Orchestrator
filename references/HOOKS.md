@@ -2,7 +2,7 @@
 
 Zehn Hook-Typen. Diese Datei ist die kanonische Fassung; das Schwester-Repo
 [LinkedInOptimizer](https://github.com/GodModeAI2025/LinkedInOptimizer) führt dieselben zehn in
-`references/TEMPLATES.md`, weil sein Skill-Paket offline vollständig sein muss und keine Datei aus
+`LinkedInOptimizer/references/TEMPLATES.md`, weil sein Skill-Paket offline vollständig sein muss und keine Datei aus
 diesem Repo lesen kann. Bindende Fläche sind die zehn Namen und ihre Reihenfolge: Wer hier einen
 Typ ergänzt, umbenennt oder streicht, zieht es dort nach. `scripts/check_hooks.py` prüft in beiden
 Repos, dass die eigene Kopie genau diese zehn Namen in dieser Reihenfolge führt.
