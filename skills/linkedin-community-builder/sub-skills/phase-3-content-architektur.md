@@ -98,20 +98,15 @@ Freitag:   Beweisen   → Wochenrückblick oder Daten-Post
 
 Der Anfang entscheidet: Danach bricht LinkedIn den Text mit "…mehr" ab. Wo genau der Schnitt liegt, hängt von Gerät und Fensterbreite ab; als Arbeitsgröße gelten die ersten rund 200 Zeichen. Gelesen wird überwiegend mobil und im Vorbeiscrollen. Genaue Anteile und Sekundenwerte dazu sind nicht belegt.
 
-**Hook-Typen die funktionieren:**
-
-- **Kontra-Intuition**: "Alles, was du über [Thema] weißt, ist falsch."
-- **Daten-Schock**: "Ich habe [X] analysiert. Das Ergebnis überrascht."
-- **Verletzlichkeit**: "Monatelang hat niemand meine Posts gelesen. Bis ich [X] verstanden habe."
-- **Spezifisches Versprechen**: "Die [X]-Methode, die mein [Y] um [Z]% verbessert hat."
-- **Frage**: "Warum scheitern so viele [X]-Kampagnen?" (eine Zahl gehört nur in den Hook, wenn sie aus einer Quelle stammt, die du nennen kannst)
-- **Widerspruch**: "Unpopuläre Meinung: [Verbreiteter Glaube] ist der größte Fehler in [Branche]."
+Die zehn Hook-Typen stehen in `references/HOOKS.md`, samt Vorlagensatz und Einsatzzweck. Lies die
+Datei, wenn ein Hook gebraucht wird, und nimm nicht immer denselben Typ.
 
 **Hook-Regeln:**
 - Unter 200 Zeichen
 - Spannung oder Neugier erzeugen
 - Spezifisch sein (Zahlen, Namen, Details)
-- Keine "Ich"-Eröffnung (führt zu geringerer Click-Through-Rate)
+- Keine "Ich"-Eröffnung
+- Eine Zahl gehört nur in den Hook, wenn sie in `references/SOURCES.md` eine Zeile hat
 
 ### Format-Mix-Empfehlung
 
