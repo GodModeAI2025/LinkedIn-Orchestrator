@@ -1,0 +1,26 @@
+{
+  "name": "linkedin-orchestrator",
+  "owner": {
+    "name": "Mark Zimmermann",
+    "url": "https://github.com/GodModeAI2025"
+  },
+  "description": "Der Skill linkedin-community-builder: der laufende LinkedIn-Betrieb ueber Wochen und Monate.",
+  "plugins": [
+    {
+      "name": "linkedin-community-builder",
+      "displayName": "LinkedIn Community Builder",
+      "source": "./",
+      "description": "Laufender LinkedIn-Betrieb in sieben Phasen, von der Positionierung bis zur Monetarisierung. Nicht fuer die einmalige Ist-Analyse mit Score und Report, dafuer linkedin-profil-optimierung.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Mark Zimmermann",
+        "url": "https://github.com/GodModeAI2025"
+      },
+      "homepage": "https://godmodeai2025.github.io/LinkedIn-Orchestrator/",
+      "repository": "https://github.com/GodModeAI2025/LinkedIn-Orchestrator",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["linkedin", "content-strategie", "community", "engagement", "deutsch"]
+    }
+  ]
+}
