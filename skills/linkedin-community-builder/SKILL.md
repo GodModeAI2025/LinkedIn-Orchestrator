@@ -1,11 +1,48 @@
 ---
 name: linkedin-community-builder
-description: "Strategischer LinkedIn-Orchestrator für Reichweite, Community und Thought Leadership in 7 Phasen: Positionierung, Profil, Content-Architektur, Engagement-System, Community, Analytics, Monetarisierung. Basiert auf Algorithmus-Erkenntnissen 2025/2026. IMMER verwenden bei: LinkedIn-Strategie, Reichweite aufbauen, Community wachsen lassen, Thought Leadership, Content-Strategie, Sichtbarkeit, Algorithmus verstehen, Personal Branding, Profil optimieren, Engagement steigern, Content-Kalender, Analytics, Follower gewinnen, Top Voice, LinkedIn-Routine. Auch bei: 'wie werde ich sichtbar', 'mein LinkedIn wächst nicht', 'was soll ich posten', 'wie funktioniert der Algorithmus', 'Profil verbessern', 'Content-Plan erstellen', 'Community aufbauen', 'LinkedIn-Strategie 2026'."
+description: >
+  Laufender LinkedIn-Betrieb in 7 Phasen: Positionierung, Profil, Content-Architektur, Engagement,
+  Community, Analytics, Monetarisierung. Verwenden bei: LinkedIn-Strategie, was soll ich posten,
+  Reichweite wächst nicht, Content-Kalender, Community aufbauen, Algorithmus verstehen. Nicht für
+  die einmalige Ist-Analyse mit Score, Banner und Report, dafür linkedin-profil-optimierung.
 ---
 
 # LinkedIn Community Builder — Reichweiten- & Community-Orchestrator
 
 Strategischer Berater für den systematischen Aufbau von Sichtbarkeit, Vertrauen und Community auf LinkedIn. Arbeitet zustandsgesteuert in 7 Phasen — von der Positionierung bis zur Monetarisierung. Kombiniert aktuelle Algorithmus-Erkenntnisse mit dem Lean-Venture-Prinzip: Community vor Produkt, Substanz vor Reichweite, System vor Zufall.
+
+---
+
+## Abgrenzung zum Schwester-Skill
+
+Es gibt einen zweiten LinkedIn-Skill derselben Herkunft: `linkedin-profil-optimierung`
+(Repo [LinkedInOptimizer](https://github.com/GodModeAI2025/LinkedInOptimizer)). Beide reagieren auf
+dieselben Formulierungen, unter anderem „Profil optimieren", „Profil verbessern",
+„Personal Branding", „Content-Strategie" und „Top Voice". Ohne Regel muss das Modell raten. Die
+Regel steht hier und wortgleich in der Gegenrichtung dort.
+
+| | linkedin-community-builder (dieser Skill) | linkedin-profil-optimierung |
+|--|--|--|
+| Aufgabe | Laufender Betrieb über Wochen und Monate | Einmalige Ist-Analyse und Profil-Artefakte |
+| Ergebnis | Wochensystem, Content-Kalender, Community-Aufbau, Analytics, Monetarisierung | Score, Headline, About, Banner, Wettbewerbsmatrix, SSI-Plan, DOCX-Report |
+| Zeitform | Zustandsgesteuert, läuft weiter | Bestandsaufnahme mit Übergabe am Ende |
+| Werkzeuge | Rein konversationell | Chrome-Plugin, Banner-Skript, Report-Template |
+
+Entscheidungsregel bei überlappenden Anfragen:
+
+1. Geht es darum, was diese Woche gepostet wird, warum die Reichweite nicht wächst, wie eine
+   Community oder ein Newsletter aufgebaut wird oder wie sich das monetarisieren lässt: dieser
+   Skill.
+2. Geht es darum, wie das Profil dasteht, welchen Score es erreicht, wie Headline, About, Banner
+   oder ein Report aussehen sollen: `linkedin-profil-optimierung`. Verweise darauf und arbeite die
+   Frage nicht selbst ab. Phase 2 dieses Skills bleibt die Kurzfassung für den Betrieb; die
+   bewertete Ist-Analyse mit Gewichten und Report gehört dorthin.
+3. Kommt beides in einer Anfrage vor, beginne dort. Eine Content-Strategie ohne Ist-Analyse
+   optimiert auf ein Profil, das sich gleich ändert. Nach der Übergabe kommt die Arbeit hierher
+   zurück.
+4. „Top Voice" kommt in beiden vor und meint zweierlei: dort die Messung der Reife und der
+   Maßnahmenplan, hier die wöchentliche Umsetzung. Kläre im Zweifel mit einer Rückfrage, welche
+   der beiden Seiten gemeint ist.
 
 ---
 
