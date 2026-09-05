@@ -11,7 +11,7 @@ description: >
 
 Was an den Aussagen dieses Skills belegt ist und was nicht, steht in `references/SOURCES.md`: belegte Quellen mit URL und Datum, zurückgezogene Zahlen und die Angaben, die ausdrücklich Erfahrungswerte sind. Nenne keine Zahl, die dort nicht steht.
 
-Strategischer Berater für den systematischen Aufbau von Sichtbarkeit, Vertrauen und Community auf LinkedIn. Arbeitet zustandsgesteuert in 7 Phasen — von der Positionierung bis zur Monetarisierung. Kombiniert aktuelle Algorithmus-Erkenntnisse mit dem Lean-Venture-Prinzip: Community vor Produkt, Substanz vor Reichweite, System vor Zufall.
+Strategischer Berater für den systematischen Aufbau von Sichtbarkeit, Vertrauen und Community auf LinkedIn. Arbeitet zustandsgesteuert in 7 Phasen — von der Positionierung bis zur Monetarisierung. Kombiniert ein Arbeitsmodell des Algorithmus mit dem Lean-Venture-Prinzip: Community vor Produkt, Substanz vor Reichweite, System vor Zufall.
 
 ---
 
@@ -81,18 +81,6 @@ keine.
 
 ## Orchestrator-Modus
 
-### Die 7 Phasen
-
-```
-Phase 1: Positionierung schärfen       → Wofür stehst du?
-Phase 2: Profil optimieren             → Dein Profil als Landingpage
-Phase 3: Content-Architektur           → Säulen, Formate, Kadenz
-Phase 4: Engagement-System             → Sichtbar werden durch Gespräche
-Phase 5: Community pflegen             → Vom Publikum zur Gemeinschaft
-Phase 6: Reichweite analysieren        → Was funktioniert, was nicht
-Phase 7: Monetarisierung vorbereiten   → Community zu Kunden machen
-```
-
 ### Einstiegspunkte
 
 | Benutzer sagt... | Einstieg |
@@ -108,19 +96,22 @@ Phase 7: Monetarisierung vorbereiten   → Community zu Kunden machen
 
 ---
 
-### Die Phasendateien
+### Die sieben Phasen
 
 Jede Phase steht in einer eigenen Datei. Lies sie, wenn die Phase dran ist, und nicht vorher.
 
-| Phase | Fokus | Datei |
-|-------|-------|-------|
-| 1 | Positionierung schärfen | `sub-skills/phase-1-positionierung.md` |
+| Phase | Worum es geht | Datei |
+|-------|---------------|-------|
+| 1 | Positionierung schärfen: Wofür stehst du? | `sub-skills/phase-1-positionierung.md` |
 | 2 | Profil als Landingpage | `sub-skills/phase-2-profil.md` |
 | 3 | Content-Architektur: Säulen, Formate, Kadenz | `sub-skills/phase-3-content-architektur.md` |
-| 4 | Engagement-System | `sub-skills/phase-4-engagement.md` |
-| 5 | Community pflegen | `sub-skills/phase-5-community.md` |
-| 6 | Reichweite analysieren | `sub-skills/phase-6-analytics.md` |
-| 7 | Monetarisierung vorbereiten | `sub-skills/phase-7-monetarisierung.md` |
+| 4 | Engagement-System: sichtbar werden durch Gespräche | `sub-skills/phase-4-engagement.md` |
+| 5 | Community pflegen: vom Publikum zur Gemeinschaft | `sub-skills/phase-5-community.md` |
+| 6 | Reichweite analysieren: was funktioniert, was nicht | `sub-skills/phase-6-analytics.md` |
+| 7 | Monetarisierung: Community zu Kunden machen | `sub-skills/phase-7-monetarisierung.md` |
+
+Der Einstieg ist nicht Phase 1, sondern die Phase, zu der die Frage des Benutzers passt.
+Rücksprünge sind jederzeit möglich.
 
 Querschnittsregeln, die vor der jeweiligen Phase gelten:
 
