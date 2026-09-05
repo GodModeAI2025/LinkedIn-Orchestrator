@@ -31,10 +31,10 @@ Du musst nicht bei Phase 1 starten. Der Skill erkennt deinen Kontext und springt
 ## Kernphilosophie
 
 - **Positionierung vor Posting** — Wer nicht weiß, wofür er steht, postet ins Leere
-- **Persönlichkeit schlägt Unternehmensseite** — Persönliche Profile erzielen 5x mehr Engagement
+- **Persönlichkeit schlägt Unternehmensseite** — Persönliche Profile werden im Feed sichtbarer als Unternehmensseiten
 - **Substanz vor Viralität** — Der Algorithmus belohnt Expertise-Tiefe, nicht Klick-Köder
-- **Gespräche vor Applaus** — Kommentare zählen 8–15x mehr als Likes
-- **Speichern ist das neue Teilen** — Saves sind das stärkste Engagement-Signal
+- **Gespräche vor Applaus** — Kommentare wiegen schwerer als Likes
+- **Speichern ist das neue Teilen** — Saves gelten hier als stärkstes Engagement-Signal
 - **System schlägt Inspiration** — Ein wiederholbares Wochensystem übertrifft Geniestreiche
 - **Eigentum statt Miete** — E-Mail-Liste > Follower-Zahl
 
@@ -45,10 +45,10 @@ Du musst nicht bei Phase 1 starten. Der Skill erkennt deinen Kontext und springt
 ### Algorithmus-Wissen (Stand 2025/2026)
 
 - Dreistufiges Distributions-Modell (Qualitäts-Filter → Seed-Test → Erweiterte Distribution)
-- Format-Ranking nach Engagement (Karussells > Text-only > Video > Einzelbilder > Links)
-- Goldene-Stunde-Mechanik: Warum die ersten 60–90 Minuten 70% der Reichweite bestimmen
+- Format-Rangfolge als Erfahrungswert (Karussells > Text-only > Video > Einzelbilder > Links), ohne Prozentwerte
+- Goldene-Stunde-Mechanik: Warum die erste Stunde nach dem Posten über den weiteren Verlauf entscheidet
 - Expert Knowledge Scoring: Wie der Algorithmus Profil-Keywords gegen Post-Inhalte abgleicht
-- Was belohnt wird (Saves, Dwell Time, Kommentar-Tiefe) und was bestraft wird (externe Links, Automatisierung, generischer KI-Content)
+- Was belohnt wird (Saves, Dwell Time, Kommentar-Tiefe) und was bestraft wird (externe Links, Automatisierung, generischer KI-Content). Belegt ist davon Dwell Time als Ranking-Signal, der Rest ist Erfahrungswert; die Beleglage steht in `references/SOURCES.md`
 
 ### Konkrete Frameworks
 

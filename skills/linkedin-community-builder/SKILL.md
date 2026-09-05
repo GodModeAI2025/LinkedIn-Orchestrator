@@ -9,6 +9,8 @@ description: >
 
 # LinkedIn Community Builder — Reichweiten- & Community-Orchestrator
 
+Was an den Aussagen dieses Skills belegt ist und was nicht, steht in `references/SOURCES.md`: belegte Quellen mit URL und Datum, zurückgezogene Zahlen und die Angaben, die ausdrücklich Erfahrungswerte sind. Nenne keine Zahl, die dort nicht steht.
+
 Strategischer Berater für den systematischen Aufbau von Sichtbarkeit, Vertrauen und Community auf LinkedIn. Arbeitet zustandsgesteuert in 7 Phasen — von der Positionierung bis zur Monetarisierung. Kombiniert aktuelle Algorithmus-Erkenntnisse mit dem Lean-Venture-Prinzip: Community vor Produkt, Substanz vor Reichweite, System vor Zufall.
 
 ---
@@ -53,9 +55,9 @@ Entscheidungsregel bei überlappenden Anfragen:
 Grundsätze:
 
 1. **Positionierung vor Posting** — Wer nicht weiß, wofür er steht, postet ins Leere
-2. **Persönlichkeit schlägt Unternehmensseite** — Persönliche Profile erzielen 5x mehr Engagement als Firmenseiten
+2. **Persönlichkeit schlägt Unternehmensseite** — Persönliche Profile werden im Feed sichtbarer als Unternehmensseiten (Erfahrungswert, siehe `references/SOURCES.md`)
 3. **Substanz vor Viralität** — Der Algorithmus belohnt Expertise-Tiefe, nicht Klick-Köder
-4. **Gespräche vor Applaus** — Kommentare zählen 8-15x mehr als Likes
+4. **Gespräche vor Applaus** — Kommentare wiegen schwerer als Likes (Erfahrungswert, ohne belegbaren Faktor)
 5. **Speichern ist das neue Teilen** — Saves sind das stärkste Engagement-Signal
 6. **System schlägt Inspiration** — Ein wiederholbares Wochensystem übertrifft sporadische Geniestreiche
 7. **Eigentum statt Miete** — E-Mail-Liste und eigene Plattform sind wertvoller als Follower-Zahlen
@@ -66,29 +68,29 @@ Grundsätze:
 
 ### Wie der LinkedIn-Algorithmus Inhalte verteilt
 
-Der Algorithmus ist ein Ranking-System für professionelle Relevanz. Er arbeitet in drei Stufen:
+Der Algorithmus ist ein Ranking-System für professionelle Relevanz; dass LinkedIn dafür ein eigenes, groß angelegtes Modell einsetzt, ist belegt (Q2). Die folgenden drei Stufen sind dagegen ein Arbeitsmodell aus der Beratungspraxis und kein dokumentierter Aufbau:
 
 **Stufe 1: Qualitäts-Filter**
 Jeder Post wird zuerst auf Spam, niedrige Qualität und fehlende professionelle Relevanz geprüft. Posts, die diesen Filter nicht bestehen, werden nie getestet.
 
 **Stufe 2: Seed-Test (Die goldene Stunde)**
-Posts, die den Qualitäts-Filter passieren, werden 2-5% des Netzwerks gezeigt. Die ersten 60-90 Minuten entscheiden über 70% der Gesamtreichweite. Entscheidend ist nicht die Menge, sondern die Qualität des Engagements.
+Posts, die den Qualitäts-Filter passieren, werden zunächst einem kleinen Teil des Netzwerks gezeigt. Die erste bis zweite Stunde nach dem Posten entscheidet über den weiteren Verlauf. Entscheidend ist nicht die Menge, sondern die Qualität des Engagements. Die Anteile und Zeitfenster, die dazu kursieren, sind nicht belegt; siehe `references/SOURCES.md`.
 
 **Stufe 3: Erweiterte Distribution**
-Posts mit starkem Seed-Engagement werden einem breiteren Publikum gezeigt. Erfolgreiche Posts können 2-3 Wochen sichtbar bleiben — deutlich länger als früher.
+Posts mit starkem Seed-Engagement werden einem breiteren Publikum gezeigt. Erfolgreiche Beiträge bleiben länger im Umlauf als schwache. Wie lange genau, ist nicht belegt.
 
 ### Was der Algorithmus belohnt
 
-- **Expertise-Kongruenz**: Der Algorithmus gleicht Post-Themen mit dem beruflichen Profil ab. Posts zu Themen, die zur verifizierten Expertise passen, erhalten bis zu 40% mehr Reichweite als themenfremde Inhalte
-- **Verweildauer (Dwell Time)**: Wie lange jemand den Post tatsächlich liest — nicht nur scrollt
-- **Saves & Sends**: Das stärkste Signal. Saves sind ca. 5x wertvoller als Likes
+- **Expertise-Kongruenz**: Der Algorithmus gleicht Post-Themen mit dem beruflichen Profil ab. Themenkonsistenz zahlt sich aus, themenfremde Ausreißer nicht (Erfahrungswert)
+- **Verweildauer (Dwell Time)**: Wie lange jemand den Post tatsächlich liest, nicht nur scrollt. Dass LinkedIn Dwell Time als Ranking-Signal nutzt, ist belegt (Q1)
+- **Saves & Sends**: Das stärkste Signal im Erfahrungswert dieses Skills. Ein belegbarer Faktor gegenüber Likes existiert nicht
 - **Kommentar-Tiefe**: Substantielle Kommentare und Gespräche unter dem Post
 - **Profil-Aktionen**: Profilbesuche nach dem Lesen eines Posts
 - **Beziehungsdichte**: Engagement von echten Kontakten wiegt schwerer als von Fremden
 
 ### Was der Algorithmus bestraft
 
-- **Externe Links im Post-Text**: Bis zu 60% weniger Reichweite. Links gehören in den ersten Kommentar
+- **Externe Links im Post-Text**: Kosten Reichweite. Links gehören in den ersten Kommentar (Erfahrungswert, der kursierende Prozentwert ist nicht belegt)
 - **Automatisierungs-Tools**: LinkedIn erkennt und drosselt automatisierte Kommentare und Engagement-Pods
 - **Generischer KI-Content**: Posts, die nach Template klingen, werden im Qualitäts-Filter abgewertet
 - **Übermäßiges Tagging**: Maximal 5 Personen taggen — mehr schadet der Performance
@@ -97,9 +99,9 @@ Posts mit starkem Seed-Engagement werden einem breiteren Publikum gezeigt. Erfol
 ### Format-Ranking nach Engagement (2025/2026)
 
 ```
-1. Karussells (PDF)     → Höchstes Engagement (~24-46%), erhöht Dwell Time durch Swipen
-2. Text-only Posts      → Wirken authentisch, performen stark mit guten Hooks
-3. Native Video (<90s)  → 20x mehr Shares, mit Untertiteln (72% schauen ohne Ton)
+1. Karussells (PDF)     → Stärkstes Format, erhöht Dwell Time durch Swipen
+2. Text-only Posts      → Wirken authentisch, tragen mit guten Hooks weit
+3. Native Video (<90s)  → Wird geteilt, Untertitel einplanen (viele schauen ohne Ton)
 4. Dokumente            → Referenz-Content, wird gespeichert
 5. Einzelbilder         → Performen 2026 schwächer als Text-only (Trendwende!)
 6. Externe Links        → Schwächste Performance, wenn im Post-Text
@@ -194,7 +196,7 @@ Erarbeite mit dem Benutzer diesen Satz:
 Das LinkedIn-Profil in eine konvertierende Landingpage verwandeln — optimiert für den Algorithmus und für menschliche Besucher.
 
 ### Leitprinzip
-**Dein Profil ist das erste, was Menschen nach einem guten Post anschauen.** Profile mit 100% Vollständigkeit erzielen bis zu 71% mehr Reichweite. Der Algorithmus prüft Profil-Keywords gegen Post-Inhalte — Kongruenz wird belohnt.
+**Dein Profil ist das erste, was Menschen nach einem guten Post anschauen.** Ein vollständiges Profil zahlt sich aus, weil der Algorithmus Profil-Keywords gegen Post-Inhalte prüft und Kongruenz belohnt. Der kursierende Reichweitenzuwachs für Vollständigkeit ist nicht belegt; siehe `references/SOURCES.md`.
 
 ### Profil-Anatomie
 
@@ -337,7 +339,7 @@ Freitag:   Beweisen   → Wochenrückblick oder Daten-Post
 → Hohe Glaubwürdigkeit, wird gespeichert
 
 **6. Frage-Post (Community-Aktivierung)**
-- Problem oder Frage als Hook (Fragen in den ersten 5 Sekunden erzeugen 32% mehr Kommentare)
+- Problem oder Frage als Hook (eine Frage im Einstieg lädt zum Antworten ein, Erfahrungswert)
 - Eigene Perspektive teilen
 - Offene Frage stellen
 → Maximiert Kommentare (stärkstes Algorithmus-Signal)
@@ -347,11 +349,11 @@ Freitag:   Beweisen   → Wochenrückblick oder Daten-Post
 - Max. 10-15 Folien, wenig Text pro Folie
 - Konsistentes Design
 - Letzte Folie: CTA + Profilhinweis
-→ Höchstes Engagement aller Formate (bis zu 46%)
+→ Stärkstes Format im Erfahrungswert dieses Skills, ohne belegbaren Engagement-Wert
 
 ### Hook-Handwerk
 
-Die ersten 210 Zeichen entscheiden über alles (der "See more"-Cutoff). 72% der LinkedIn-Aktivität ist mobil — 7 Sekunden Scan-Zeit.
+Der Anfang entscheidet: Danach bricht LinkedIn den Text mit "…mehr" ab. Wo genau der Schnitt liegt, hängt von Gerät und Fensterbreite ab; als Arbeitsgröße gelten die ersten rund 200 Zeichen. Gelesen wird überwiegend mobil und im Vorbeiscrollen. Genaue Anteile und Sekundenwerte dazu sind nicht belegt.
 
 **Hook-Typen die funktionieren:**
 
@@ -359,7 +361,7 @@ Die ersten 210 Zeichen entscheiden über alles (der "See more"-Cutoff). 72% der 
 - **Daten-Schock**: "Ich habe [X] analysiert. Das Ergebnis überrascht."
 - **Verletzlichkeit**: "Monatelang hat niemand meine Posts gelesen. Bis ich [X] verstanden habe."
 - **Spezifisches Versprechen**: "Die [X]-Methode, die mein [Y] um [Z]% verbessert hat."
-- **Frage**: "Warum scheitern 81% der [X]-Kampagnen?"
+- **Frage**: "Warum scheitern so viele [X]-Kampagnen?" (eine Zahl gehört nur in den Hook, wenn sie aus einer Quelle stammt, die du nennen kannst)
 - **Widerspruch**: "Unpopuläre Meinung: [Verbreiteter Glaube] ist der größte Fehler in [Branche]."
 
 **Hook-Regeln:**
