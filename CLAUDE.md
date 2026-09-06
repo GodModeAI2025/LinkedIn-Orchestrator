@@ -53,7 +53,10 @@ Benutzer einfügt oder importiert. Neue Schritte, die fremden Text verarbeiten, 
 bevor sie ihn verarbeiten.
 
 **Landingpages.** Zwei Dateien, `index.html` und `developer.html`, jede mit beiden Sprachfassungen
-als `<template>` und einem Umschalter. Keine dritte HTML-Datei, keine Sprachkopie: genau daraus
+als `<template>` und einem Umschalter. In `index.html` führen beide Fassungen gleich viele
+Abschnitte und Quizfragen; `scripts/check_landing.py` erzwingt das über `PARITAET_PFLICHT`. Die
+englische Fassung von `developer.html` ist bewusst eine Kurzfassung und sagt das auf der Seite. Wer
+sie ausbaut, nimmt die Datei in `PARITAET_PFLICHT` auf. Keine dritte HTML-Datei, keine Sprachkopie: genau daraus
 sind vorher sechs Dateien mit zwei Duplikaten und einer Divergenz geworden.
 
 **Actions.** In `.github/workflows/` steht hinter jedem `uses:` eine Commit-SHA, nicht ein Tag,
