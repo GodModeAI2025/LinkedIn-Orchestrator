@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+  # Handstart, wenn kein Tag gepusht werden kann oder ein Release wiederholt
+  # werden muss. Die Version kommt auch dann aus VERSION und nicht aus einer
+  # Eingabe: es gibt eine Quelle, und das bleibt so.
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -23,10 +27,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Der Tag muss zu VERSION passen. Sonst verspricht der Tagname eine
-      # Version, die im Repo nirgends steht.
-      - name: Tag gegen VERSION pruefen
-        run: python scripts/check_versions.py --expect "${GITHUB_REF_NAME#v}"
+      # Beim Tag-Lauf muss der Tagname zu VERSION passen, sonst verspricht der
+      # Tagname eine Version, die im Repo nirgends steht. Beim Handstart gibt es
+      # keinen Tagnamen; dann gilt VERSION, und der Tag wird daraus gesetzt.
+      - name: Version bestimmen und pruefen
+        id: version
+        run: |
+          version="$(cat VERSION)"
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            version="${GITHUB_REF_NAME#v}"
+          fi
+          python scripts/check_versions.py --expect "$version"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "nummer=$version" >> "$GITHUB_OUTPUT"
 
       # Dieses Repo liefert kein Archiv aus: der Skill wird als Plugin
       # installiert oder geklont. Das Release ist die Markierung des Stands und
@@ -34,8 +47,7 @@ jobs:
       - name: Release-Text aus CHANGELOG.md schneiden
         id: text
         run: |
-          version="${GITHUB_REF_NAME#v}"
-          python - "$version" <<'PY' > release-notes.md
+          python - "${{ steps.version.outputs.nummer }}" <<'PY' > release-notes.md
           import re, sys
           version = sys.argv[1]
           text = open("CHANGELOG.md", encoding="utf-8").read()
@@ -51,4 +63,5 @@ jobs:
       - name: Release anlegen
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.version.outputs.tag }}
           body_path: release-notes.md
