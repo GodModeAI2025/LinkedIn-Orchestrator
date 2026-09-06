@@ -212,8 +212,6 @@ die Datei in `PARITAET_PFLICHT` auf und hat die Prüfung sofort im Rücken.
 
 ## Offene Punkte
 
-- GitHub Actions auf Commit-SHAs pinnen statt auf Tags. Dependabot hält sie monatlich aktuell,
-  ersetzt das Pinnen aber nicht.
 - Der Hook-Katalog ist über die Repo-Grenze mit dem Schwester-Repo gekoppelt, ohne dass ein Skript
   den Abgleich prüft.
 

@@ -59,6 +59,12 @@ englische Fassung von `developer.html` ist bewusst eine Kurzfassung und sagt das
 sie ausbaut, nimmt die Datei in `PARITAET_PFLICHT` auf. Keine dritte HTML-Datei, keine Sprachkopie: genau daraus
 sind vorher sechs Dateien mit zwei Duplikaten und einer Divergenz geworden.
 
+**Actions.** In `.github/workflows/` steht hinter jedem `uses:` eine Commit-SHA, nicht ein Tag,
+und dahinter als Kommentar die Version, die sie trägt. Ein Tag lässt sich verschieben; wer die
+Action übernähme, übernähme damit den Lauf. Vorsicht bei annotierten Tags:
+`softprops/action-gh-release@v3` zeigt auf ein Tag-Objekt, gepinnt wird der Commit dahinter
+(`git ls-remote --tags`, die Zeile mit `^{}`).
+
 **Kundendaten.** Gehören nicht ins Repo. `.gitignore` hält docx, xlsx und csv heraus; die Regel
 gilt auch für alles, was dort nicht steht.
 
