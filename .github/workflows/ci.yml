@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      # Die Actions stehen auf Tags, nicht auf Commit-SHAs. Ein Tag laesst sich
+      # verschieben; wer die Action uebernimmt, uebernimmt damit diesen Lauf.
+      # Das Pinnen auf SHAs steht als offener Punkt in der README.
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # PYTHONPYCACHEPREFIX haelt __pycache__ aus dem Arbeitsbaum.
+      - name: Python-Syntax pruefen
+        run: PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache" python -m compileall -q scripts
+
+      # VERSION ist die Quelle, die beiden Manifeste und CHANGELOG.md sind
+      # Kopien. Weicht eine ab, installiert der Marketplace eine andere Version
+      # als die, die im Changelog steht.
+      - name: Versionsangaben pruefen
+        run: python scripts/check_versions.py
+
+      # Die description im Frontmatter entscheidet, ob das Modell diesen Skill
+      # oder den Schwester-Skill linkedin-profil-optimierung laedt. Geprueft
+      # werden Laenge, Strichzeichen und der Abgrenzungssatz.
+      - name: Trigger-Beschreibung pruefen
+        run: python scripts/check_descriptions.py
+
+      # references/SOURCES.md fuehrt die Beleglage. Das Skript prueft, dass
+      # jede zitierte Quellen-ID existiert, und sperrt die fuenfzehn
+      # zurueckgezogenen Zahlen gegen ihre Rueckkehr. Es prueft Schreibweisen,
+      # keine Aussagen: ein neu formulierter Satz mit derselben Behauptung
+      # faellt ihm nicht auf.
+      - name: Beleglage pruefen
+        run: python scripts/check_sources.py
+
+      # Der Hook-Katalog steht in beiden LinkedIn-Repos. Hier wird die
+      # kanonische Fassung geprueft. Ob das Schwester-Repo nachgezogen wurde,
+      # sieht dieser Lauf nicht.
+      - name: Hook-Katalog pruefen
+        run: python scripts/check_hooks.py
+
+      # Die Landingpages tragen beide Sprachfassungen als <template> und
+      # schalten per Knopf um. Geprueft wird die Bauform, die das traegt, und
+      # dass kein Verweis mehr auf die vier geloeschten HTML-Dateien zeigt.
+      - name: Landingpages pruefen
+        run: python scripts/check_landing.py
+
+      # Ein Skill, den Claude nicht findet, ist kein Skill. Die Datei muss
+      # SKILL.md heissen und unter skills/<name>/ liegen; das Plugin-Manifest
+      # verlaesst sich darauf.
+      - name: Skill-Datei am erwarteten Ort
+        run: |
+          test -f skills/linkedin-community-builder/SKILL.md
+          test -f .claude-plugin/plugin.json
+          test -f .claude-plugin/marketplace.json
+          python -c "import json,sys; [json.load(open(p)) for p in ['.claude-plugin/plugin.json','.claude-plugin/marketplace.json']]"
+
+      # Jede Datei, auf die der Skill-Text verweist, muss es geben, und zwar
+      # relativ zum Skill-Verzeichnis. Genau das war vorher falsch: references/
+      # lag im Wurzelverzeichnis, eine Ebene ueber dem Skill, und alle vier
+      # Verweise waeren im installierten Plugin ins Leere gelaufen.
+      - name: Verweise pruefen
+        run: python scripts/check_links.py

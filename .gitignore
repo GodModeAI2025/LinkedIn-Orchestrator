@@ -1,0 +1,9 @@
+# Kundendaten und lokale Arbeitsstaende gehoeren nicht ins Repo.
+*.docx
+*.xlsx
+*.csv
+assets/kunden/
+testing/
+__pycache__/
+.env
+.DS_Store
