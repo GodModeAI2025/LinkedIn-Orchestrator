@@ -17,9 +17,20 @@ Geprueft wird, was diese Bauform traegt:
 
 Exitcode 0, wenn beide Seiten das erfuellen. Exitcode 1 sonst.
 
-Nicht geprueft wird, ob die beiden Sprachfassungen inhaltlich zusammenpassen.
-Die englische ist kuerzer als die deutsche; das ist so gewachsen und faellt hier
-nicht auf.
+5. In index.html tragen beide Sprachfassungen dieselbe Zahl an Abschnitten und
+   Quizfragen. Die englische Fassung war lange kuerzer: sieben Abschnitte und
+   das ganze Quiz fehlten. Wer einen Abschnitt nur auf einer Seite ergaenzt,
+   faellt jetzt auf.
+
+Fuer developer.html gilt Punkt 5 nicht, und das ist eine Entscheidung, keine
+Nachlaessigkeit: die englische Fassung dieser Seite ist eine Kurzfassung mit
+vier Abschnitten, waehrend die deutsche zwoelf fuehrt. Sie sagt das auf der
+Seite selbst. Wer sie eines Tages ausbaut, nimmt PARITAET_PFLICHT diese Datei
+hinzu und hat die Pruefung sofort im Ruecken.
+
+Nicht geprueft wird, ob die beiden Fassungen inhaltlich dasselbe sagen. Gezaehlt
+werden Abschnitte, nicht Bedeutungen: eine Ueberschrift ohne Inhalt zaehlt mit.
+Ebenso wenig geprueft wird, ob die Kurzfassung ihren Hinweis noch traegt.
 """
 
 import re
@@ -28,9 +39,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SEITEN = ["index.html", "developer.html"]
+
+# Seiten, deren Sprachfassungen gleich viele Abschnitte fuehren muessen.
+# developer.html fehlt hier bewusst, siehe Docstring.
+PARITAET_PFLICHT = {"index.html"}
 GELOESCHT = ["index_de.html", "index_en.html", "index_dev_de.html", "index_dev_en.html"]
 
 TEMPLATE = re.compile(r'<template id="content-(de|en)">(.*?)</template>', re.S)
+ABSCHNITT = re.compile(r'class="screen-heading"')
+QUIZFRAGE = re.compile(r'class="quiz-question-block"')
 MODUL_ID = re.compile(r'\bid="(m\d+)"')
 
 
@@ -63,6 +80,18 @@ def pruefe(rel_pfad: str, fehler: list) -> None:
     # Nicht nur href="index_de.html": auch ./index_de.html, einfache
     # Anfuehrungszeichen und ein angehaengter Anker fuehren auf dieselbe
     # geloeschte Datei und damit auf dieselbe 404.
+    if rel_pfad in PARITAET_PFLICHT and "de" in templates and "en" in templates:
+        for muster, was in ((ABSCHNITT, "Abschnitte"), (QUIZFRAGE, "Quizfragen")):
+            zahlen = dict(
+                (sprache, len(muster.findall(koerper)))
+                for sprache, koerper in templates.items()
+            )
+            if zahlen["de"] != zahlen["en"]:
+                fehler.append(
+                    f"{rel_pfad}: {was} ungleich verteilt, deutsch {zahlen['de']}, "
+                    f"englisch {zahlen['en']}. Beide Fassungen fuehren denselben Kurs."
+                )
+
     for name in GELOESCHT:
         muster = re.compile(
             r"""href\s*=\s*["']\s*\.?/?%s(?:[#?][^"']*)?\s*["']""" % re.escape(name)

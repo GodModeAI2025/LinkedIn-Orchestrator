@@ -138,8 +138,6 @@ Das ist eine Regel an das Modell, kein Riegel im Code. Was sie nicht leistet, st
 
 - Der Skill misst nichts. Er liest, was du ihm gibst, und ordnet es ein.
 - Das Algorithmus-Modell ist ein Arbeitsmodell. LinkedIn dokumentiert seine Verteilungslogik nicht.
-- Die englische Fassung der Landingpage ist kürzer als die deutsche. Das ist so gewachsen; die
-  Prüfung sieht es nicht.
 - Ob eine Empfehlung im Gespräch befolgt wurde, sieht kein Skript.
 
 ## Fehlerbehebung
@@ -207,11 +205,15 @@ andere Fassung in `#page` und ruft die Initialisierung erneut auf; nur eine Fass
 deshalb bleiben die Modul-IDs eindeutig. Die Wahl hält `localStorage`, ohne gespeicherte Wahl
 entscheidet die Browsersprache.
 
+`index.html` führt beide Fassungen vollständig: gleiche Zahl an Abschnitten und Quizfragen,
+erzwungen von `scripts/check_landing.py`. Die englische Fassung von `developer.html` ist eine
+Kurzfassung mit vier von zwölf Abschnitten und sagt das oben auf der Seite; wer sie ausbaut, nimmt
+die Datei in `PARITAET_PFLICHT` auf und hat die Prüfung sofort im Rücken.
+
 ## Offene Punkte
 
 - GitHub Actions auf Commit-SHAs pinnen statt auf Tags. Dependabot hält sie monatlich aktuell,
   ersetzt das Pinnen aber nicht.
-- Die englische Fassung der Landingpage auf den Stand der deutschen bringen.
 - Der Hook-Katalog ist über die Repo-Grenze mit dem Schwester-Repo gekoppelt, ohne dass ein Skript
   den Abgleich prüft.
 
