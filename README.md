@@ -209,8 +209,6 @@ entscheidet die Browsersprache.
 
 ## Offene Punkte
 
-- GitHub Actions auf Commit-SHAs pinnen statt auf Tags. Dependabot hält sie monatlich aktuell,
-  ersetzt das Pinnen aber nicht.
 - Die englische Fassung der Landingpage auf den Stand der deutschen bringen.
 - Der Hook-Katalog ist über die Repo-Grenze mit dem Schwester-Repo gekoppelt, ohne dass ein Skript
   den Abgleich prüft.
