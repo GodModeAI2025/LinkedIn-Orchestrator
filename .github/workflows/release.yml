@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Wie in der CI stehen die Actions auf Tags, nicht auf Commit-SHAs.
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Der Tag muss zu VERSION passen. Sonst verspricht der Tagname eine
+      # Version, die im Repo nirgends steht.
+      - name: Tag gegen VERSION pruefen
+        run: python scripts/check_versions.py --expect "${GITHUB_REF_NAME#v}"
+
+      # Dieses Repo liefert kein Archiv aus: der Skill wird als Plugin
+      # installiert oder geklont. Das Release ist die Markierung des Stands und
+      # traegt den zugehoerigen Abschnitt aus CHANGELOG.md als Text.
+      - name: Release-Text aus CHANGELOG.md schneiden
+        id: text
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          python - "$version" <<'PY' > release-notes.md
+          import re, sys
+          version = sys.argv[1]
+          text = open("CHANGELOG.md", encoding="utf-8").read()
+          treffer = re.search(
+              r"^## %s .*?\n(.*?)(?=^## \d|\Z)" % re.escape(version),
+              text, re.S | re.M)
+          if not treffer:
+              sys.exit("FEHLER: CHANGELOG.md hat keinen Abschnitt fuer %s" % version)
+          print(treffer.group(1).strip())
+          PY
+          cat release-notes.md
+
+      - name: Release anlegen
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release-notes.md

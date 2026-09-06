@@ -181,7 +181,9 @@ LinkedIn-Orchestrator/
 │   ├── check_sources.py            # Beleglage und Sperrmuster
 │   ├── check_hooks.py              # Zehn Hook-Namen in kanonischer Reihenfolge
 │   └── check_landing.py            # Bauform der Landingpages
-└── .github/workflows/ci.yml        # Acht Prüfschritte
+└── .github/workflows/
+    ├── ci.yml                      # Acht Prüfschritte
+    └── release.yml                 # Release auf ein Tag v*, Text aus CHANGELOG.md
 ```
 
 ## Prüfungen
