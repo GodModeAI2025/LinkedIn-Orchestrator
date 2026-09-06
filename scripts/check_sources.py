@@ -72,7 +72,11 @@ haelt, aendert das Muster, nicht den Schalter.
 Was das Skript nicht kann: Es prueft Schreibweisen, keine Aussagen. Ein frei
 formulierter Satz, der eine zurueckgezogene Behauptung in neuen Worten
 aufstellt, faellt ihm nicht auf. Fuer die eine Behauptung, an der das teuer
-waere, steht deshalb unten eine zweite, engere Pruefung: BEHAUPTUNGS_REGELN
+waere, sieht das Schwester-Repo eine zweite, engere Pruefung vor
+(BEHAUPTUNGS_REGELN). In diesem Repo ist diese Liste leer: die eine Behauptung,
+um die es dort geht, kommt hier nicht vor. Stattdessen steht hier eine eigene
+Coderegel, RANGLISTEN_SPALTE, gegen Prozentwerte in der Rangliste der
+Landingpage. Frueher stand an dieser Stelle: BEHAUPTUNGS_REGELN
 verlangt, dass ein Absatz, der Collaborative Articles und ein Badge in einem Zug
 nennt, Q3 zitiert. Das ist kein Beweis, sondern eine Schwelle. Wer die falsche
 Aussage mit der richtigen Quellenangabe hinschreibt, kommt weiter durch.
@@ -104,6 +108,7 @@ GEPRUEFTE_DATEIEN = [
     "skills/linkedin-community-builder/sub-skills/phase-6-analytics.md",
     "skills/linkedin-community-builder/sub-skills/phase-7-monetarisierung.md",
     "skills/linkedin-community-builder/references/ALGORITHM.md",
+    "skills/linkedin-community-builder/references/HOOKS.md",
     "README.md",
     "index.html",
     "developer.html",
@@ -127,7 +132,7 @@ BINDESTRICH = r"[-‐‑‒–]"
 LEER = r"(?:\s|&nbsp;|&#160;| |" + BINDESTRICH + r")*"
 
 # Umlaute in einem Sperrmuster fangen auch ihre ae-Umschrift. Die Skripte im
-# Repo schreiben Umlaute aus, und scripts/generate_report.js steht mit auf der
+# Repo schreiben Umlaute aus, und die Landingpages steht mit auf der
 # Liste der geprueften Dateien.
 UMLAUTE = {
     "ä": r"(?:ä|ae)",

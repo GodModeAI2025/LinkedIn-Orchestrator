@@ -60,10 +60,18 @@ def pruefe(rel_pfad: str, fehler: list) -> None:
                 f"{', '.join(doppelt)} mehrfach vor."
             )
 
+    # Nicht nur href="index_de.html": auch ./index_de.html, einfache
+    # Anfuehrungszeichen und ein angehaengter Anker fuehren auf dieselbe
+    # geloeschte Datei und damit auf dieselbe 404.
     for name in GELOESCHT:
-        if f'href="{name}"' in inhalt:
+        muster = re.compile(
+            r"""href\s*=\s*["']\s*\.?/?%s(?:[#?][^"']*)?\s*["']""" % re.escape(name)
+        )
+        for treffer in muster.finditer(inhalt):
+            zeile = inhalt.count("\n", 0, treffer.start()) + 1
             fehler.append(
-                f"{rel_pfad}: Verweis auf {name}. Die Datei ist entfernt, der Link waere ein 404."
+                f"{rel_pfad}:{zeile}: Verweis auf {name}. Die Datei ist entfernt, "
+                "der Link waere ein 404."
             )
 
 
