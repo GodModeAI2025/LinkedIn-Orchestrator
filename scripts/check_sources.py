@@ -113,6 +113,7 @@ GEPRUEFTE_DATEIEN = [
     "index.html",
     "developer.html",
     "skills/linkedin-community-builder/references/UNTRUSTED.md",
+    "skills/linkedin-community-builder/references/KI-MUSTER.md",
 ]
 
 DATUM = re.compile(r"\d{4}-\d{2}-\d{2}")

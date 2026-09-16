@@ -97,6 +97,9 @@ dürfen nicht als Benchmark gegen ein Konto gehalten werden:
 - Die Arbeitsgröße von rund 200 Zeichen für den Hook. Wo LinkedIn den Text abschneidet, hängt von
   Gerät und Fensterbreite ab.
 - Die Stufen der Monetarisierungs-Leiter und die Warnsignal-Checkliste in Phase 6.
+- Die Obergrenze von fünf markierten Personen je Beitrag und die Videolänge unter 90 Sekunden in
+  `ALGORITHM.md` und Phase 3.
+- Der Zeitrahmen von 6 bis 12 Monaten bis zu echter Traktion im Gesprächsstil von `SKILL.md`.
 
 ## Prüfrhythmus
 
