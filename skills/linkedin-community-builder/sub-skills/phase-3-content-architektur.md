@@ -108,6 +108,9 @@ Datei, wenn ein Hook gebraucht wird, und nimm nicht immer denselben Typ.
 - Keine "Ich"-Eröffnung
 - Eine Zahl gehört nur in den Hook, wenn sie in `references/SOURCES.md` eine Zeile hat
 
+Bevor ein Post- oder Hook-Entwurf übergeben wird, geht er durch die Prüfliste in
+`references/KI-MUSTER.md`.
+
 ### Format-Mix-Empfehlung
 
 ```

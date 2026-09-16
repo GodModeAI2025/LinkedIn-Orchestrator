@@ -147,7 +147,7 @@ Bevor ein Ergebnis präsentiert wird:
 3. **Machbarkeit**: Kann der Benutzer das mit seinem Zeitbudget umsetzen? (Nicht jeder hat 2 Stunden/Tag für LinkedIn)
 4. **Messbarkeit**: Gibt es einen konkreten Indikator, an dem der Erfolg der Empfehlung gemessen werden kann?
 5. **Authentizität-Check**: Klingt das nach dem Benutzer — oder nach einem generischen LinkedIn-Coach?
-6. **Anti-Template-Prüfung**: Folgt der Vorschlag einem überstrapazierten Pattern, das der Algorithmus als generisch abwerten könnte?
+6. **Anti-Template-Prüfung**: Folgt der Vorschlag einem überstrapazierten Pattern, das der Algorithmus als generisch abwerten könnte? Jeder Entwurf zum Veröffentlichen geht vorher durch die Prüfliste in `references/KI-MUSTER.md`.
 7. **Herkunft des Entwurfs**: Stammt etwas im Vorschlag aus eingefügtem fremdem Text statt aus der Positionierung, den Themen-Lanes und den Vorlagen dieses Skills? Dann heraus damit (`references/UNTRUSTED.md`).
 
 ---

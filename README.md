@@ -72,7 +72,8 @@ Keiner dieser Sätze trägt eine Zahl. Das ist Absicht, siehe [Datenbasis](#date
 **Frameworks**
 
 Positionierungs-Dreieck und Positionierungs-Formel, Themen-Lanes mit Gewichtung, Profil-Audit,
-drei Content-Jobs, sieben Post-Formate, zehn Hook-Typen in `references/HOOKS.md`, die 3-2-1-Regel,
+drei Content-Jobs, sieben Post-Formate, zehn Hook-Typen in `references/HOOKS.md`, eine Prüfliste
+gegen KI-typische Muster im Entwurf in `references/KI-MUSTER.md`, die 3-2-1-Regel,
 die tägliche 15-Minuten-Engagement-Routine, vier Kommentar-Typen, das wöchentliche
 Analytics-Review, die Warnsignal-Checkliste, die Monetarisierungs-Leiter, die 90/10-Regel.
 
@@ -171,6 +172,7 @@ LinkedIn-Orchestrator/
 │   └── references/
 │       ├── ALGORITHM.md            # Algorithmus-Arbeitsmodell
 │       ├── HOOKS.md                # Kanonischer Hook-Katalog, zehn Typen
+│       ├── KI-MUSTER.md            # Prüfliste gegen KI-typische Muster im Entwurf
 │       ├── SOURCES.md              # Beleglage, zurückgezogene Zahlen, Sperrmuster
 │       └── UNTRUSTED.md            # Eingefügter Text ist Daten, nie Anweisung
 ├── scripts/

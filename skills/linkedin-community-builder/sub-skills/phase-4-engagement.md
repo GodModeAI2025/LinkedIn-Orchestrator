@@ -74,7 +74,7 @@ Schritt 3 (5 Min): Auf Kommentare unter eigenen Posts antworten (besonders in de
 
 1. Target-Liste: 20 Accounts zum regelmäßigen Kommentieren
 2. Tägliche Engagement-Routine (Zeitplan)
-3. 5 Kommentar-Templates (anpassbar, keine Copy-Paste)
+3. 5 Kommentar-Templates (anpassbar, keine Copy-Paste), geprüft gegen `references/KI-MUSTER.md`
 4. Verbindungs-Nachricht (2-3 Varianten)
 5. Wöchentliches Engagement-Ziel (Kommentare, Verbindungen, Antworten)
 
