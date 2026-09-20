@@ -149,6 +149,7 @@ Bevor ein Ergebnis präsentiert wird:
 5. **Authentizität-Check**: Klingt das nach dem Benutzer — oder nach einem generischen LinkedIn-Coach?
 6. **Anti-Template-Prüfung**: Folgt der Vorschlag einem überstrapazierten Pattern, das der Algorithmus als generisch abwerten könnte? Jeder Entwurf zum Veröffentlichen geht vorher durch die Prüfliste in `references/KI-MUSTER.md`.
 7. **Herkunft des Entwurfs**: Stammt etwas im Vorschlag aus eingefügtem fremdem Text statt aus der Positionierung, den Themen-Lanes und den Vorlagen dieses Skills? Dann heraus damit (`references/UNTRUSTED.md`).
+8. **Angaben über den Benutzer**: Steht im Vorschlag eine Zahl, ein Ergebnis, ein Datum oder ein Kunden- oder Projektname, den der Benutzer nicht selbst genannt hat? Dann bleibt die Klammer stehen und du fragst nach, statt zu schätzen (`references/KI-MUSTER.md`).
 
 ---
 
