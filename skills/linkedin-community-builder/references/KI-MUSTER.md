@@ -2,8 +2,8 @@
 
 Prüfliste für jeden Text, den dieser Skill für den Benutzer entwirft und den er unter eigenem
 Namen veröffentlichen soll: Post, Hook, Kommentar, Antwort, Verbindungsnachricht. Gelesen wird sie
-in Phase 3 und Phase 4, bevor ein Entwurf übergeben wird, und bei Punkt 6 der Verifikation in
-`SKILL.md`.
+in Phase 3 und Phase 4, bevor ein Entwurf übergeben wird, und bei den Punkten 6 und 8 der
+Verifikation in `SKILL.md`.
 
 ## Warum
 
@@ -51,7 +51,15 @@ hast, reicht, wenn er fragt.
 - Aussagen, die auf jede Branche passen. Ein Entwurf braucht mindestens ein Detail, das nur der
   Benutzer kennen kann: ein Projekt, eine Situation, eine eigene Beobachtung. Fehlt es, frag danach,
   statt es zu erfinden.
-- Zahlen nur mit Zeile in `SOURCES.md`, wie überall in diesem Skill.
+- Zwei Arten von Zahlen, zwei Herkünfte. Allgemeine Aussagen über LinkedIn brauchen eine Zeile in
+  `SOURCES.md`, wie überall in diesem Skill. Angaben über den Benutzer — Ergebnisse, Umsätze,
+  Teilnehmerzahlen, Zeiträume, Namen von Kunden und Projekten — kann `SOURCES.md` nicht belegen.
+  Sie stammen ausschließlich vom Benutzer.
+- Fehlt eine solche Angabe, bleibt die eckige Klammer im Entwurf stehen, so wie die Vorlagen in
+  `HOOKS.md` sie setzen, und du fragst danach. Keine plausible Schätzung, keine runde Hausnummer,
+  kein Beispielwert, der beim Kopieren zur Behauptung wird. Eine offene Klammer ist eine Rückfrage;
+  eine erfundene Zahl unter dem Namen des Benutzers kostet die Glaubwürdigkeit, um die es in diesem
+  Skill geht.
 
 ## Stimme des Benutzers
 
