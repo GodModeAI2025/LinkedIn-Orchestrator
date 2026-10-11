@@ -12,8 +12,8 @@ Der Algorithmus ist ein Ranking-System für professionelle Relevanz; dass Linked
 **Stufe 1: Qualitäts-Filter**
 Jeder Post wird zuerst auf Spam, niedrige Qualität und fehlende professionelle Relevanz geprüft. Posts, die diesen Filter nicht bestehen, werden nie getestet.
 
-**Stufe 2: Seed-Test (Die goldene Stunde)**
-Posts, die den Qualitäts-Filter passieren, werden zunächst einem kleinen Teil des Netzwerks gezeigt. Die erste bis zweite Stunde nach dem Posten entscheidet über den weiteren Verlauf. Entscheidend ist nicht die Menge, sondern die Qualität des Engagements. Die Anteile und Zeitfenster, die dazu kursieren, sind nicht belegt; siehe `references/SOURCES.md`.
+**Stufe 2: Seed-Test (Die erste Zeit nach dem Posten)**
+Posts, die den Qualitäts-Filter passieren, werden zunächst einem kleinen Teil des Netzwerks gezeigt. Die erste Zeit nach dem Posten prägt den weiteren Verlauf. Entscheidend ist nicht die Menge, sondern die Qualität des Engagements. Die Anteile und Zeitfenster, die dazu kursieren, sind nicht belegt; siehe `references/SOURCES.md`.
 
 **Stufe 3: Erweiterte Distribution**
 Posts mit starkem Seed-Engagement werden einem breiteren Publikum gezeigt. Erfolgreiche Beiträge bleiben länger im Umlauf als schwache. Wie lange genau, ist nicht belegt.

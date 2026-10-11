@@ -24,7 +24,7 @@ Zeige die Person hinter der Expertise. Reisen, Überzeugungen, Fehler, Perspekti
 
 ### Wöchentliches Posting-System
 
-Empfohlene Kadenz: **3-5 Posts pro Woche** (Studien zeigen optimale Ergebnisse bei 2-5 Posts/Woche)
+Empfohlene Kadenz: **3-5 Posts pro Woche**
 
 **Das Wochen-Rezept (Minimum Viable Kadenz):**
 

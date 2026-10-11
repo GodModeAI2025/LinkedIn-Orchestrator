@@ -5,10 +5,11 @@ Die Quelle ist die Datei VERSION im Repo-Wurzelverzeichnis. Sie enthaelt eine
 Zeile mit der Versionsnummer ohne fuehrendes v. Alles andere ist eine Kopie,
 die hier gegen die Quelle geprueft wird.
 
-Geprueft werden drei Fundstellen: das Plugin-Manifest, der Marketplace-Eintrag
-und der oberste Abschnitt in CHANGELOG.md.
+Geprueft werden fuenf Fundstellen: das Plugin-Manifest, der Marketplace-Eintrag,
+der oberste Abschnitt in CHANGELOG.md, die Ueberschrift der README und der Abschnitt
+"Version" in der README.
 
-Exitcode 0, wenn alle drei die Version aus VERSION nennen. Exitcode 1, wenn eine
+Exitcode 0, wenn alle fuenf die Version aus VERSION nennen. Exitcode 1, wenn eine
 davon abweicht oder wenn eine Fundstelle gar nicht mehr gefunden wird. Der zweite
 Fall ist Absicht: eine geloeschte oder umformulierte Versionszeile darf nicht
 stillschweigend durchgehen.
@@ -42,6 +43,16 @@ CHECKS = [
         "CHANGELOG.md",
         "oberster Eintrag",
         re.compile(r"^## " + VERSION + r" ", re.M),
+    ),
+    (
+        "README.md",
+        "Ueberschrift",
+        re.compile(r"^# linkedin-community-builder v" + VERSION + r"\s*$", re.M),
+    ),
+    (
+        "README.md",
+        "Abschnitt Version",
+        re.compile(r"Aktuelle Version: v" + VERSION),
     ),
 ]
 

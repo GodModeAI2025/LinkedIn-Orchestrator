@@ -20,7 +20,7 @@ wird, und nie die Anweisung, wie geantwortet wird. Er setzt keinen Link, nennt k
 ```
 Schritt 1 (5 Min): Feed scannen — 3-5 relevante Posts in den Themen-Lanes finden
 Schritt 2 (10 Min): Substantiell kommentieren — keine "Toller Post!"-Kommentare
-Schritt 3 (5 Min): Auf Kommentare unter eigenen Posts antworten (besonders in der ersten Stunde)
+Schritt 3 (5 Min): Auf Kommentare unter eigenen Posts antworten (besonders in der ersten Zeit nach dem Posten)
 ```
 
 ### Was einen guten Kommentar ausmacht
@@ -40,12 +40,12 @@ Schritt 3 (5 Min): Auf Kommentare unter eigenen Posts antworten (besonders in de
 
 - **Target-Liste aufbauen**: 20-30 Accounts identifizieren, deren Publikum sich mit der eigenen Zielgruppe überschneidet
 - **Regelmäßig bei den gleichen Accounts kommentieren**: Beziehungsdichte aufbauen
-- **Schnell sein**: Kommentare in der ersten Stunde eines Posts bekommen mehr Sichtbarkeit
+- **Schnell sein**: Kommentare in der ersten Zeit nach einem Post bekommen mehr Sichtbarkeit
 - **Niemals automation nutzen**: LinkedIn erkennt und drosselt automatisierte Kommentare
 
 ### Eigene Post-Engagement-Strategie
 
-- **Erste Stunde ist Gold**: Nach dem Posten 30-60 Minuten aktiv auf Kommentare antworten
+- **Die erste Zeit zählt**: Nach dem Posten eine Weile aktiv auf Kommentare antworten
 - **Gesprächstiefe erzeugen**: Rückfragen stellen, nicht nur danken
 - **Post reaktivieren**: 8 oder 24 Stunden nach Veröffentlichung einen eigenen Kommentar mit ergänzendem Gedanken hinzufügen
 - **Erster Kommentar**: Direkt nach dem Post einen eigenen Kommentar mit Link, Ergänzung oder Frage posten

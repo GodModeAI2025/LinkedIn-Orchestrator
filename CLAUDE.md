@@ -25,8 +25,9 @@ Syntaxprüfung, den Ortstest für SKILL.md und die Auflösung aller Verweise.
 Verzeichnis. Vorher hieß die Datei `skill.md` und lag im Wurzelverzeichnis; so lädt Claude sie
 nicht, und das Plugin-Manifest findet sie ebenfalls nicht.
 
-**Versionen.** `VERSION` ist die Quelle, drei Fundstellen sind Kopien: beide Manifeste unter
-`.claude-plugin/` und der oberste Abschnitt in `CHANGELOG.md`. Wer die Version hebt, hebt alle drei.
+**Versionen.** `VERSION` ist die Quelle, fünf Fundstellen sind Kopien: beide Manifeste unter
+`.claude-plugin/`, der oberste Abschnitt in `CHANGELOG.md` und zwei Stellen in `README.md`
+(Überschrift und Abschnitt „Version“). Wer die Version hebt, hebt alle fünf.
 
 **Zahlen.** Keine Zahl in den Skill, die in `references/SOURCES.md` keine Zeile hat. Fünfzehn
 Angaben sind dort zurückgezogen, mit Begründung und Sperrmuster; sie kommen nur mit URL und Datum
